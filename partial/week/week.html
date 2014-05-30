@@ -1,0 +1,10 @@
+<div class="span12" ng-controller="WeekCtrl">
+
+
+  <ng-include src="'partial/week/project/project.html'"></ng-include>
+  <ng-include src="'partial/week/user/user.html'"></ng-include>
+
+  <div ng-repeat="hour in week.reported">
+    {{ hour }}
+  </div>
+</div>
