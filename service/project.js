@@ -2,8 +2,12 @@ angular.module('iteam-dashboard').service('project', function () {
   'use strict';
 
   var project = {
+    
     getProjects : function(week){
-      var projects = week.planned.reduce(function(hashMap, alotment){
+      /*
+        Convert planned hours to a hashmap of projects and users
+      */
+      var projects = week.planned.reduce(function(hashmap, alotment){
 
         /*
           1525:
@@ -14,7 +18,7 @@ angular.module('iteam-dashboard').service('project', function () {
           ...
          */
 
-        var project = hashMap[alotment.ProjectId] = hashMap[alotment.ProjectId] || {};
+        var project = hashmap[alotment.ProjectId] = hashmap[alotment.ProjectId] || {};
         project.name = alotment.ProjectName;
         project.department = alotment.ProjectDepartment;
 
@@ -29,10 +33,14 @@ angular.module('iteam-dashboard').service('project', function () {
 
         }, project.users || {});
 
-        return hashMap;
+        return hashmap;
       }, {});
 
-      projects = week.reported.reduce(function(hashMap, hour){
+
+      /*
+        Convert reported hours to a hashmap of projects and users
+       */
+      projects = week.reported.reduce(function(hashmap, hour){
 
         /*
           1525:
@@ -43,12 +51,11 @@ angular.module('iteam-dashboard').service('project', function () {
           ...
          */
 
-        var project = hashMap[hour.ProjectId] = hashMap[hour.ProjectId] || (
-          // Traverse through the parents tree to find a project or create a new one
-          hour.ParentProjectIds.filter(function(parentId){
-            return hashMap[parentId];
-          }).pop() || {}
-        );
+        var projectId = hashmap[hour.ProjectId] ? hour.ProjectId : hour.ParentProjectIds.filter(function(parentId){
+          return hashmap[parentId];
+        }).pop() || hour.ProjectId;
+
+        var project = hashmap[projectId] = hashmap[projectId] || {};
 
         project.users = project.users || {};
         var user = project.users[hour.EmployeeShortName] = project.users[hour.EmployeeShortName] || {};
@@ -58,7 +65,7 @@ angular.module('iteam-dashboard').service('project', function () {
         user.reported.details[hour.ProjectId].startDate = hour.StartDate;
         user.reported.details[hour.ProjectId].reported = hour.ReportedDate;*/
 
-        return hashMap;
+        return hashmap;
       }, projects);
 
       return projects;
