@@ -53,12 +53,12 @@ describe('project', function () {
       };
   });
 
-  describe("#summary", function(){
+  describe("#aggregate", function(){
 
     it('should aggregate planned week', function () {
       var week = {
-        reported: [],
-        planned: dummyWeek.planned
+        planned: dummyWeek.planned,
+        reported: []
       };
       var summary = project.getProjects(week);
       expect(summary).to.have.keys('1337');
@@ -66,15 +66,15 @@ describe('project', function () {
       expect(summary[1337].users).to.have.property('jgn');
     });
 
-    it('should aggregate reported week', function () {
+    it('should aggregate unplanned (only reported) week', function () {
       var week = {
         planned: [],
         reported: dummyWeek.reported
       };
       var summary = project.getProjects(week);
-      expect(summary).to.have.keys('1337');
-      expect(summary[1337]).to.have.property('users');
-      expect(summary[1337].users).to.have.property('jgn');
+      expect(summary).to.have.keys('unplanned');
+      expect(summary['unplanned']).to.have.property('users');
+      expect(summary['unplanned'].users).to.have.property('jgn');
     });
 
     it('should aggregate both planned and reported week', function () {
@@ -109,5 +109,19 @@ describe('project', function () {
       expect(summary[1337].users.jgn.reported).to.eql(1.9);
     });
   });
+
+  describe("#summary", function(){
+    it('should summarize all planned and reported hours per project ', function () {
+      var week = dummyWeek;
+      var aggregate = project.getProjects(week);
+      expect(aggregate[1337]).to.have.property('summary');
+      expect(aggregate[1337].summary).to.have.property('planned');
+      expect(aggregate[1337].summary).to.have.property('reported');
+      expect(aggregate[1337].summary.planned).to.eql(1.3);
+      expect(aggregate[1337].summary.reported).to.eql(1.9);
+
+    });
+  });
+
 
 });

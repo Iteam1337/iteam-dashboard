@@ -24,7 +24,7 @@ angular.module('iteam-dashboard').service('project', function () {
         project.users = alotment.PlannedHoursPerEmployee.reduce(function(users, plannedUser){
           var user = users[plannedUser.EmployeeShortName.toLowerCase()] = users[plannedUser.EmployeeShortName.toLowerCase()] || {};
           Object.keys(plannedUser.PlannedHoursPerRole).forEach(function(type){
-            user.planned = (user.planned || 0) + plannedUser.PlannedHoursPerRole[type];
+            user.planned = +parseFloat(+(user.planned || 0) + plannedUser.PlannedHoursPerRole[type]).toFixed(2);
             user.types = user.types || {};
             user.types[type] = plannedUser.PlannedHoursPerRole[type];
           });
@@ -34,6 +34,7 @@ angular.module('iteam-dashboard').service('project', function () {
 
         return hashmap;
       }, {});
+
 
 
       /*
@@ -52,9 +53,9 @@ angular.module('iteam-dashboard').service('project', function () {
 
         var projectId = hashmap[hour.ProjectId] ? hour.ProjectId : hour.ParentProjectIds.filter(function(parentId){
           return hashmap[parentId];
-        }).pop() || hour.ProjectId;
+        }).pop() || 'unplanned';
 
-        var project = hashmap[projectId] = hashmap[projectId] || {};
+        var project = hashmap[projectId] = hashmap[projectId] || { name : 'Unplanned'};
 
         project.users = project.users || {};
         var user = project.users[hour.EmployeeShortName.toLowerCase()] = project.users[hour.EmployeeShortName.toLowerCase()] || {};
@@ -66,6 +67,18 @@ angular.module('iteam-dashboard').service('project', function () {
 
         return hashmap;
       }, projects);
+
+      // summary of all reported and planned hours for each project
+      Object.keys(projects).forEach(function(projectId){
+        var project = projects[projectId];
+        project.summary = Object.keys(project.users).reduce(function(summary, userName){
+          var user = project.users[userName];
+          summary.planned = (summary.planned || 0) + (user.planned || 0);
+          summary.reported = (summary.reported || 0) + (user.reported || 0);
+          // TODO: more key facts.. 
+          return summary;
+        }, {});
+      });
 
       return projects;
 

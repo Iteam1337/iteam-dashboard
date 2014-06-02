@@ -1,6 +1,6 @@
 <div class="span12" ng-controller="MenuCtrl">
     Select menu:
     <select ng-model="yearWeek">
-      <option ng-repeat="week in weeks" value="{{ week.year }}{{ week.week }}">{{ week.year }} {{ week.week }}</option>
+      <option ng-repeat="week in weeks" value="{{ week.year }}{{ week.week }}">{{ week.year }} {{ week.week }}{{ !week.delta && ' (this week)' || ''}}</option>
     </select>
 </div>

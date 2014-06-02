@@ -24,12 +24,36 @@ describe('user', function () {
                 }
               }
             ]
+          },
+          {
+            ProjectId: 1338,
+            ProjectName: 'More Leet',
+            PlannedHoursPerEmployee:[
+              {
+                EmployeeShortName: 'jgn',
+                PlannedHoursPerRole: {
+                  int: 1,
+                  dev: 2
+                }
+              }
+            ]
           }
         ],
         reported : [
           {
             ProjectId: 1337,
-            NumberOfHours: 1.25,
+            NumberOfHours: 1.6,
+            EmployeeShortName: 'jgn',
+            ParentProjectIds:[
+              577,
+              8,
+              1339,
+              1338
+            ]
+          },
+          {
+            ProjectId: 1338,
+            NumberOfHours: 1.3,
             EmployeeShortName: 'jgn',
             ParentProjectIds:[
               577,
@@ -50,6 +74,14 @@ describe('user', function () {
       expect(users.jgn).to.have.property('planned');
       expect(users.jgn).to.have.property('reported');
     });
+
+    it('should merge many projects together', function(){
+      var week = dummyWeek;
+      var users = user.getUsers(week);
+      expect(users.jgn.planned).to.eql(6);
+      expect(users.jgn.reported).to.eql(2.9);
+    });
+
   });
 
 });

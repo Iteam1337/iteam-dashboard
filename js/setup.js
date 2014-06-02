@@ -1,6 +1,6 @@
 angular.module('iteam-dashboard', ['ui.router', 'ngResource']);
 
-angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterProvider) {
+angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
   'use strict';
 
   $stateProvider.state('week', {
@@ -16,6 +16,7 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
     templateUrl: 'partial/week/user/user.html'
   });
 	/* Add New Routes Above */
+  //$locationProvider.html5Mode(true);
   
   // For any unmatched url, redirect to /
   $urlRouterProvider.otherwise('/');
