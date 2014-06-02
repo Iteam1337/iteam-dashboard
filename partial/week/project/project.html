@@ -2,7 +2,7 @@
 
 <table>
   <tr valign="bottom">
-    <td ng-repeat="(projectId, project) in projects">
+    <td ng-repeat="(projectId, project) in projects | orderBy: department">
         <a href="#project_{{projectId}}" class="planned" style="height: {{project.summary.planned * 3}}px;">
           <span>{{ project.summary.planned}}</span>
         </a>

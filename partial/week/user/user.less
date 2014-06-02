@@ -1,0 +1,46 @@
+div[ng-controller="WeekUserCtrl"]
+{
+
+  table{
+    width: 90%;
+    height: 50%;
+    position: fixed;
+    td{
+      position: relative;
+      vertical-align: top;
+
+      &.userName{
+        width: 70px;
+        vertical-align: middle;
+        text-align: right;
+      }
+
+      a {
+        padding: 5px;
+        box-sizing: border-box;
+        text-decoration: none;
+        color: #000;
+        display: inline-block;
+        border-radius: 0 10px 10px 0;
+        opacity: 0.5;
+
+        &.planned{
+          border: 2px solid green;
+          left:20px;
+          z-index: 10;
+          height:100%;
+          text-align: right;
+          position: absolute;
+        }
+        &.reported{
+          border: 2px solid blue;
+          background: blue;
+          left:20px;
+          height:90%;
+          z-index: 20;
+          position: absolute;
+        }
+      }
+    }
+  }
+}

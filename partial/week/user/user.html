@@ -1,10 +1,26 @@
 <div class="span12" ng-controller="WeekUserCtrl">
-Users:
-  <div ng-repeat="(userName,user) in users">
-    User: {{ userName }}
-    
-    Planned: {{user.planned}}
-    Reported: {{user.reported}}
-  </div>
+  <table>
+    <tr  ng-repeat="(userName, user) in users">
+      <td class="userName">
+        {{ userName }}
+      </td>
+      <td>
+          <a class="planned" style="width: {{user.planned * 3}}px;">
+            <span>{{ user.planned}}</span>
+          </a>
+          <a class="reported" style="width: {{user.reported * 3}}px;">
+            <span>{{ user.reported}}</span>
+          </a>
+
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td ng-repeat="(userId, user) in users" class="userName">
+      </td>
+    </tr>
+  </table>
 
 </div>
+
