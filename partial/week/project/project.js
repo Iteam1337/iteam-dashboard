@@ -1,6 +1,8 @@
 angular.module('iteam-dashboard').controller('WeekProjectCtrl', function ($scope, project) {
   'use strict';
 
-  $scope.projects = project.getProjects($scope.week);
+  $scope.week.$promise.then(function(){
+    $scope.projects = project.getProjects($scope.week);
+  });
 
 });

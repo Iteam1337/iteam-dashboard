@@ -20,7 +20,7 @@ describe('project', function () {
                 EmployeeShortName: 'jgn',
                 PlannedHoursPerRole: {
                   int: 1,
-                  dev: 2
+                  dev: 0.3
                 }
               }
             ]
@@ -29,8 +29,19 @@ describe('project', function () {
         reported : [
           {
             ProjectId: 1337,
-            NumberOfHours: 1.25,
-            EmployeeShortName: 'jgn',
+            NumberOfHours: 1.6,
+            EmployeeShortName: 'JGN',
+            ParentProjectIds:[
+              577,
+              8,
+              1339,
+              1338
+            ]
+          },
+          {
+            ProjectId: 1337,
+            NumberOfHours: 0.3,
+            EmployeeShortName: 'JGN',
             ParentProjectIds:[
               577,
               8,
@@ -95,6 +106,7 @@ describe('project', function () {
       expect(summary[1337].users).to.have.property('jgn');
       expect(summary[1337].users.jgn).to.have.property('planned');
       expect(summary[1337].users.jgn).to.have.property('reported');
+      expect(summary[1337].users.jgn.reported).to.eql(1.9);
     });
   });
 

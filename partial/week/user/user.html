@@ -1,12 +1,10 @@
 <div class="span12" ng-controller="WeekUserCtrl">
-
-  <div ng-repeat="user in users">
-    User: {{ user.shortName }}
+Users:
+  <div ng-repeat="(userName,user) in users">
+    User: {{ userName }}
     
-    Planned:
-    <div ng-repeat="project in user.planned">{{project}}</div>
-    Reported:
-    <div ng-repeat="project in user.reported">{{project}}</div>
+    Planned: {{user.planned}}
+    Reported: {{user.reported}}
   </div>
 
 </div>

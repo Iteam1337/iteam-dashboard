@@ -1,4 +1,4 @@
-angular.module('iteam-dashboard').service('week', function($resource) {
+angular.module('iteam-dashboard').service('week', function($resource, $q) {
   'use strict';
 
   var api = $resource('http://api-dev.iteam.se/week/:weekVersion/:yearWeek/:type', {
@@ -20,7 +20,7 @@ angular.module('iteam-dashboard').service('week', function($resource) {
 
   var week = {
     getWeek: function (yearWeek) {
-      return {
+      var week = {
         planned: api.planned({
           yearWeek: yearWeek
         }),
@@ -28,6 +28,10 @@ angular.module('iteam-dashboard').service('week', function($resource) {
           yearWeek: yearWeek
         })
       };
+
+      week.$promise = $q.all([week.planned.$promise, week.reported.$promise]);
+
+      return week;
     }
   };
 
