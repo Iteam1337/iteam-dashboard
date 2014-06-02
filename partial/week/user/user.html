@@ -2,6 +2,11 @@
 
   <div ng-repeat="user in users">
     User: {{ user.shortName }}
+    
+    Planned:
+    <div ng-repeat="project in user.planned">{{project}}</div>
+    Reported:
+    <div ng-repeat="project in user.reported">{{project}}</div>
   </div>
 
 </div>
