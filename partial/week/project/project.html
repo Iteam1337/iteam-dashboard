@@ -1,15 +1,22 @@
 <div class="span12" ng-controller="WeekProjectCtrl">
-<div ng-repeat="(projectId, project) in projects">
-    <h2>{{ project.name }}</h2>
-    
-    <a href="#project_{{projectId}}">
-      <span>{{ project.summary.planned}}</span>
-      <span>{{ project.summary.reported}}</span>
-      <div id="project_{{projectId}}" class="details" ng-repeat="(userName, user) in project.users">
-        {{userName}} : {{user}}
+
+<table>
+  <tr valign="bottom">
+    <td ng-repeat="(projectId, project) in projects">
+        <a href="#project_{{projectId}}" class="planned" style="height: {{project.summary.planned * 3}}px;">
+          <span>{{ project.summary.planned}}</span>
+        </a>
+        <a href="#project_{{projectId}}" class="reported" style="height: {{project.summary.reported * 3}}px;">
+          <span>{{ project.summary.reported}}</span>
+        </a>
+
       </div>
-    </a>
 
-  </div>
-
-</div>
+    </td>
+  </tr>
+  <tr>
+    <td ng-repeat="(projectId, project) in projects" class="projectName">
+      {{ project.name }}
+    </td>
+  </tr>
+</table>
