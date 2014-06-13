@@ -1,26 +1,16 @@
-<div class="span12" ng-controller="WeekUserCtrl">
-  <table>
-    <tr  ng-repeat="(userName, user) in users">
-      <td class="userName">
-        {{ userName }}
-      </td>
-      <td>
-          <a class="planned" style="width: {{user.planned * 3}}px;">
-            <span>{{ user.planned}}</span>
-          </a>
-          <a class="reported" style="width: {{user.reported * 3}}px;">
-            <span>{{ user.reported}}</span>
-          </a>
+<ion-nav-bar>
+  <ion-nav-back-button class="button-clear">
+    <i class="ion-arrow-left-c"></i> Back
+  </ion-nav-back-button>
+</ion-nav-bar>
+<ion-view title="{{user}}">
+  <ion-content>
+    <ion-slide-box ng-show="user" on-slide-changed="slideHasChanged($index)" active-slide="activeSlide">
 
+      <ion-slide ng-repeat="yearWeek in weeks">
+        <div class="box">
+          <week yearweek="yearWeek" user="user"></week>
         </div>
-
-      </td>
-    </tr>
-    <tr>
-      <td ng-repeat="(userId, user) in users" class="userName">
-      </td>
-    </tr>
-  </table>
-
-</div>
-
+      </ion-slide>
+  </ion-content>
+</ion-view>

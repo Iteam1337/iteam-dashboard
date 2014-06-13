@@ -10,7 +10,7 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
   });
 
   $stateProvider.state('tab.personal', {
-    url: '/personal/:user',
+    url: '/personal',
     views: {
       'personal-tab': {
         templateUrl: 'partial/week/week.html',
@@ -18,6 +18,18 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
       }
     }
   });
+
+  $stateProvider.state('tab.user', {
+    url: '/personal/:user',
+    views: {
+      'personal-tab': {
+        templateUrl: 'partial/week/user/user.html',
+        controller: 'WeekUserCtrl'
+      }
+    }
+  });
+  
+
 	$stateProvider.state('weekproject', {
     url: '/week/:yearWeek/projects',
     templateUrl: 'partial/week/project/project.html'
@@ -31,7 +43,7 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
   //$locationProvider.html5Mode(true);
   
   // For any unmatched url, redirect to /
-  $urlRouterProvider.otherwise('/tab/personal/');
+  $urlRouterProvider.otherwise('/tab/personal');
 
 });
 

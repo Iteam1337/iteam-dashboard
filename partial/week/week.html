@@ -1,12 +1,11 @@
-<ion-view title="{{yearWeek}}">
+<ion-nav-bar></ion-nav-bar>
+<ion-view title="Select user">
   <ion-content>
-    <ion-slide-box on-slide-changed="slideHasChanged($index)" active-slide="activeSlide">
-
-      <ion-slide ng-repeat="yearWeek in weeks">
-        <div class="box">
-          <week yearweek="yearWeek" user="user"></week>
-          <h2>{{user}} v{{yearWeek.week}}</h2>
-        </div>
-      </ion-slide>
-  </ion-content>
+    <ion-list>
+      <a ng-repeat="user in users" class="item item-icon-left item-icon-right" ui-sref="tab.user({user:user})">
+        <i class="icon ion-person"></i>
+        {{user.toUpperCase()}}
+        <i class="icon ion-ios7-arrow-forward"></i>
+      </a>
+    </ion-list>
 </ion-view>
