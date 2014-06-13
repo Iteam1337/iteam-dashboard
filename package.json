@@ -26,6 +26,7 @@
     "chai": "~1.8.1",
     "sinon": "~1.7.3",
     "sinon-chai": "~2.4.0",
+    "grunt-s3": "~0.2.0-alpha.3",
     "bower": "~1.2.8"
   },
   "dependencies": {

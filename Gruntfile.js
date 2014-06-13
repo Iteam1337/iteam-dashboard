@@ -162,7 +162,44 @@ module.exports = function (grunt) {
           run: true
         }
       }
-    }
+    },
+
+    s3: {
+      options: {
+        key:    process.env.AWS_ACCESS_KEY_ID,
+        secret: process.env.AWS_SECRET_ACCESS_KEY,
+        access: 'public-read',
+        region: 'eu-west-1',
+        gzip: true,
+        gzipExclude: ['.jpg', '.png', '.jpeg', '.JPG', '.PNG'],
+        maxOperations: 20,
+        headers: {
+          'Cache-Control': 'public, max-age=' + 60 * 60 * 24 * 1 // 1 day
+        },
+        upload: [
+          {
+            src: 'dist/**/*',
+            dest: '/',
+            rel: 'dist'
+          },
+        ]
+      },
+      production: {
+        options: {
+          bucket: 'dashboard.iteam.se',
+        }
+      },
+      stage: {
+        options: {
+          bucket: 'stage-dashboard.iteam.se'
+        }
+      },
+      test: {
+        options: {
+          bucket: 'test-dashboard.iteam.se'
+        }
+      },
+    },
   });
 
   grunt.loadNpmTasks('grunt-contrib-connect');
@@ -180,9 +217,32 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-ngmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha');
+  grunt.loadNpmTasks('grunt-s3');
 
   grunt.registerTask('build',['clean:before','less','dom_munger:readcss','dom_munger:readscripts','ngtemplates','cssmin','concat','ngmin','uglify','copy','dom_munger:removecss','dom_munger:addcss','dom_munger:removescripts','dom_munger:addscript','htmlmin','imagemin','clean:after']);
   grunt.registerTask('test',['jshint', 'mocha']);
   grunt.registerTask('server', ['connect']);
   grunt.registerTask('default', ['test', 'server', 'watch']);
+
+  grunt.registerTask('deploy:production', [
+    'build',
+    'test',
+    's3:production'
+  ]);
+
+  grunt.registerTask('deploy:stage', [
+    'build',
+    'test',
+    's3:stage'
+  ]);
+
+  grunt.registerTask('deploy:test', [
+    'build',
+    'test',
+    's3:test'
+  ]);
+  
+  // alias for master => test
+  grunt.registerTask('deploy:master', ['deploy:test']);
+
 };

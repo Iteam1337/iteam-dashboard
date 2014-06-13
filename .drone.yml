@@ -4,7 +4,7 @@ script:
   - npm -s install -g grunt-cli bower
   - npm -s install
   - bower install
-  - grunt build
+  - grunt deploy:$DRONE_BRANCH
 
 notify:
 
@@ -16,13 +16,3 @@ notify:
     on_started: true
     on_failure: true
     on_success: true
-
-publish:
-  s3:
-    acl: public-read
-    region: eu-west-1
-    bucket: dashboard.iteam.se
-    access_key: {{AWS_ACCESS_KEY_ID}}
-    secret_key: {{AWS_SECRET_ACCESS_KEY}}
-    source: dist
-    target: /
