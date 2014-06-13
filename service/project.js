@@ -1,6 +1,6 @@
 angular.module('iteam-dashboard').service('project', function () {
   'use strict';
-  var colorSet = ['#7C786A','#8DCDC1', '#D3E397', '#FDEC96', '#EB6E44'];
+  var colorSet = ['#AABBCC', '#7C786A','#8DCDC1', '#D3E397', '#FDEC96', '#EB6E44'];
 
   var project = {
     getProjects : function(weekHours){
@@ -73,6 +73,7 @@ angular.module('iteam-dashboard').service('project', function () {
       // summary of all reported and planned hours for each project
       Object.keys(projects).map(function(projectId){
         var project = projects[projectId];
+        project.projectId = projectId;
         project.summary = Object.keys(project.users).reduce(function(summary, userName){
           var user = project.users[userName];
           summary.planned = (summary.planned || 0) + (user.planned || 0);
@@ -83,8 +84,8 @@ angular.module('iteam-dashboard').service('project', function () {
         return project;
       }).sort(function(a,b){
         return a.planned - b.planned;
-      }).forEach(function(project,i){
-        project.color = colorSet[i % colorSet.length];
+      }).forEach(function(project){
+        project.color = colorSet[(parseInt(project.projectId,10)) % colorSet.length] || 'rgba(0,0,0,0.2)';
       });
 
       return projects;
