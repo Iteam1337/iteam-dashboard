@@ -11,9 +11,9 @@
     "angular": "~1.2.0",
     "angular-resource": "~1.2.0",
     "angular-mocks": "~1.2.0",
-    "angular-ui-router": "0.2.7",
+    "angular-ui-router": "~0.2.10",
     "less": "~1.5.1",
     "moment": "~2.4.0",
-    "ionic": "~0.9.27"
+    "ionic": "driftyco/ionic-bower#master"
   }
 }
