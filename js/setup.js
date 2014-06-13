@@ -3,9 +3,20 @@ angular.module('iteam-dashboard', ['ngResource', 'ionic']);
 angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
   'use strict';
 
-  $stateProvider.state('week', {
-    url: '/week/:yearWeek',
-    templateUrl: 'partial/week/week.html'
+  $stateProvider.state('tab', {
+    url: '/tab',
+    abstract: true,
+    templateUrl: 'partial/tabs/tabs.html'
+  });
+
+  $stateProvider.state('tab.personal', {
+    url: '/personal/:yearWeek',
+    views: {
+      'personal-tab': {
+        templateUrl: 'partial/week/week.html',
+        controller: 'WeekCtrl'
+      }
+    }
   });
 	$stateProvider.state('weekproject', {
     url: '/week/:yearWeek/projects',
@@ -15,11 +26,12 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
     url: '/week/:yearWeek/users',
     templateUrl: 'partial/week/user/user.html'
   });
+
 	/* Add New Routes Above */
   //$locationProvider.html5Mode(true);
   
   // For any unmatched url, redirect to /
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/tab/personal/');
 
 });
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="iteam-dashboard">
+<html >
 <head>
   <title></title>
 
@@ -8,10 +8,10 @@
 
   <!-- App LESS -->
   <link href="css/app.less" type="text/css" rel="stylesheet/less">
-  <link href="bower_components/ionic/release/css/ionic.css" type="text/css" rel="stylesheet/css">
+  <link href="bower_components/ionic/release/css/ionic.css" rel="stylesheet" type="text/css" >
 
 </head>
-<body>
+<body animation="slide-left-right-ios7" ng-app="iteam-dashboard">
 
   <!-- Livereload script for development only (stripped during dist build) -->
   <script src="http://localhost:35729/livereload.js" data-build="exclude"></script>
@@ -50,11 +50,16 @@
   <script src="partial/week/project/project.js"></script>
   <script src="partial/week/user/user.js"></script>
   <script src="partial/menu/menu.js"></script>
+  <script src="partial/tabs/tabs.js"></script>
   <!-- Add New Partial JS Above -->
-  <ng-include src="'partial/menu/menu.html'"></ng-include>
 
-  <div ui-view>
-  </div>
+  <ion-nav-bar class="bar-positive">
+    <ion-nav-back-button class="button-icon button-clear ion-ios7-arrow-back">
+    </ion-nav-back-button>
+  </ion-nav-bar>
+
+  <ion-nav-view></ion-nav-view>
+
   
 </body>
 </html>
