@@ -1,5 +1,6 @@
 angular.module('iteam-dashboard').service('project', function () {
   'use strict';
+  var colorSet = ['#7C786A','#8DCDC1', '#D3E397', '#FDEC96', '#EB6E44'];
 
   var project = {
     getProjects : function(weekHours){
@@ -20,6 +21,7 @@ angular.module('iteam-dashboard').service('project', function () {
         var project = hashmap[alotment.ProjectId] = hashmap[alotment.ProjectId] || {};
         project.name = alotment.ProjectName;
         project.department = alotment.ProjectDepartment;
+
 
         project.users = alotment.PlannedHoursPerEmployee.reduce(function(users, plannedUser){
           var user = users[plannedUser.EmployeeShortName.toLowerCase()] = users[plannedUser.EmployeeShortName.toLowerCase()] || {};
@@ -69,7 +71,7 @@ angular.module('iteam-dashboard').service('project', function () {
       }, projects);
 
       // summary of all reported and planned hours for each project
-      Object.keys(projects).forEach(function(projectId){
+      Object.keys(projects).map(function(projectId){
         var project = projects[projectId];
         project.summary = Object.keys(project.users).reduce(function(summary, userName){
           var user = project.users[userName];
@@ -78,6 +80,11 @@ angular.module('iteam-dashboard').service('project', function () {
           // TODO: more key facts.. 
           return summary;
         }, {});
+        return project;
+      }).sort(function(a,b){
+        return a.planned - b.planned;
+      }).forEach(function(project,i){
+        project.color = colorSet[i % colorSet.length];
       });
 
       return projects;
@@ -93,7 +100,7 @@ angular.module('iteam-dashboard').service('project', function () {
           userProjects.push({
             user: userName,
             project: project.name,
-            color: project.department && ((project.department === 'Iteam' && 'red') || (project.department.indexOf('Dev') >= 0 && 'green')) || 'blue', 
+            color: project.color, //project.department && ((project.department === 'Iteam' && 'red') || (project.department.indexOf('Dev') >= 0 && 'green')) || 'blue', 
             department: project.department,
             planned: user.planned || 0,
             reported: user.reported || 0

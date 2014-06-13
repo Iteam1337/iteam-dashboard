@@ -29,10 +29,22 @@ angular.module('iteam-dashboard').directive('week', function (project, week) {
         },0) || 30);
 
         // calculate heights
-        scope.userProjects.forEach(function(hour){
-          hour.y1 = scope.height - hour.planned * scope.scale;
-          hour.y2 = scope.height - hour.reported * scope.scale;
+        scope.userProjects.forEach(function(hour, i ){
+          hour.y1 = scope.height - Math.round(hour.planned) * scope.scale;
+          hour.y2 = scope.height - Math.round(hour.reported) * scope.scale;
+          hour.offset = 0;
+          hour.id = i;
         });
+
+        scope.userProjects.forEach(function(hourA){
+          scope.userProjects.forEach(function(hourB){
+            if ((hourA.y1 + hourA.offset === hourB.y1 + hourB.offset || hourA.y2 + hourA.offset === hourB.y2 + hourB.offset) && hourA.id !== hourB.id && !hourA.offset) {
+              hourA.offset = -scope.scale / 2;
+              hourB.offset = scope.scale / 2;
+            }
+          });
+        });
+
 
       });
     }

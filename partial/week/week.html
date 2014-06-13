@@ -4,8 +4,8 @@
 
       <ion-slide ng-repeat="yearWeek in weeks">
         <div class="box">
-          Week: {{yearWeek.week}}
-          <week yearweek="yearWeek" user="user" />
+          <week yearweek="yearWeek" user="user"></week>
+          <h2>{{user}} v{{yearWeek.week}}</h2>
         </div>
       </ion-slide>
   </ion-content>
