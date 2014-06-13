@@ -1,7 +1,6 @@
 angular.module('iteam-dashboard').controller('UserProjectCtrl', function ($scope, week, project, $stateParams) {
   'use strict';
 
-  $scope.yearWeek = $stateParams.yearWeek;
   $scope.week = week.getWeek($scope.yearWeek);
 
   $scope.week.$promise.then(function(){

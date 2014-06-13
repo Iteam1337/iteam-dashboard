@@ -1,0 +1,8 @@
+<svg  width="640" height="500">  
+
+  <line ng-repeat="up in userProjects" 
+    x1="213" x2="426" y1="{{ up.y1 }}" y2="{{ up.y2 }}" style="stroke:{{up.color}};stroke-width:2"></line>
+
+  <text ng-repeat="up in userProjects" x="203" y="{{ height - up.planned * scale }}" text-anchor="end">{{up.project}}</text>      
+  <text ng-repeat="up in userProjects" x="436" y="{{ height - up.reported * scale }}"> {{up.project}}</text>      
+</svg> 

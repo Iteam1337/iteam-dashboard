@@ -1,15 +1,11 @@
 <ion-view title="{{yearWeek}}">
   <ion-content>
-    <ion-slide-box on-slide-changed="slideHasChanged($index)">
+    <ion-slide-box on-slide-changed="slideHasChanged($index)" active-slide="activeSlide">
+
       <ion-slide ng-repeat="yearWeek in weeks">
         <div class="box">
-          <h1>Week: {{week.week}}</h1>
-          <div class="projects">
-            <ng-include src="'partial/week/project/project.html'"></ng-include>
-          </div>
-          <div class="users">
-            <ng-include src="'partial/week/user/user.html'"></ng-include>
-          </div>
+          Week: {{yearWeek.week}}
+          <week yearweek="yearWeek" user="user" />
         </div>
       </ion-slide>
   </ion-content>

@@ -2,11 +2,11 @@ angular.module('iteam-dashboard').service('project', function () {
   'use strict';
 
   var project = {
-    getProjects : function(week){
+    getProjects : function(weekHours){
       /*
         Convert planned hours to a hashmap of projects and users
       */
-      var projects = week.planned.reduce(function(hashmap, alotment){
+      var projects = weekHours.planned.reduce(function(hashmap, alotment){
 
         /*
           1525:
@@ -40,7 +40,7 @@ angular.module('iteam-dashboard').service('project', function () {
       /*
         Convert reported hours to a hashmap of projects and users
        */
-      projects = week.reported.reduce(function(hashmap, hour){
+      projects = weekHours.reported.reduce(function(hashmap, hour){
 
         /*
           1525:
@@ -82,6 +82,26 @@ angular.module('iteam-dashboard').service('project', function () {
 
       return projects;
 
+    },
+    getWeekHoursSummary : function(week){
+      var projects = project.getProjects(week);
+      return Object.keys(projects).reduce(function(userProjects, projectId){
+        var project = projects[projectId];
+
+        Object.keys(project.users).forEach(function(userName){
+          var user = project.users[userName];
+          userProjects.push({
+            user: userName,
+            project: project.name,
+            color: project.department && ((project.department === 'Iteam' && 'red') || (project.department.indexOf('Dev') >= 0 && 'green')) || 'blue', 
+            department: project.department,
+            planned: user.planned || 0,
+            reported: user.reported || 0
+          });
+        });
+        return userProjects;
+
+      }, []);
     }
 
   };

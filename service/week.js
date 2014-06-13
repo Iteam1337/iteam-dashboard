@@ -20,7 +20,7 @@ angular.module('iteam-dashboard').service('week', function($resource, $q) {
 
   var week = {
     getYearWeek: function(now){ return moment(now).year() + '' + moment().isoWeek(); },
-    getWeek: function (yearWeek) {
+    getWeekHours: function (yearWeek) {
       var week = {
         planned: api.planned({
           yearWeek: yearWeek

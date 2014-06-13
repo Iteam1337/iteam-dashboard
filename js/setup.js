@@ -10,7 +10,7 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
   });
 
   $stateProvider.state('tab.personal', {
-    url: '/personal/:yearWeek',
+    url: '/personal/:user',
     views: {
       'personal-tab': {
         templateUrl: 'partial/week/week.html',
