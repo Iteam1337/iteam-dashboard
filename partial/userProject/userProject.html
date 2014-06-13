@@ -1,0 +1,12 @@
+<div class="span12" ng-controller="UserProjectCtrl">
+  <h1>User project allocations</h1>
+  <svg height="1500" width="1500">  
+
+    <line ng-repeat="up in userProjects" 
+      x1="100"  x2="900" y1="{{up.planned * 30}}" y2="{{up.reported * 30}}" 
+      style="stroke:{{up.color}};stroke-width:2" />
+
+    <text ng-repeat="up in userProjects" x="100" y="{{up.planned * 30 }}" text-anchor="end">{{up.project}} {{up.user}}</text>      
+    <text ng-repeat="up in userProjects" x="1000" y="{{up.reported * 30 }}"> {{up.user}} {{up.project}}</text>      
+  </svg> 
+</div>
