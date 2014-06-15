@@ -1,4 +1,4 @@
-angular.module('iteam-dashboard').directive('week', function (project, week) {
+angular.module('iteam-dashboard').directive('week', function (project, week, user) {
   'use strict';
 
   return {
@@ -21,6 +21,8 @@ angular.module('iteam-dashboard').directive('week', function (project, week) {
         // filter just this user
         scope.userProjects = project.getWeekHoursSummary(weekHours).filter(function(hour){
           return hour.user === scope.user;
+        }).sort(function(a,b){
+          return a.planned - b.planned;
         });
 
         // calculate scale
@@ -45,6 +47,32 @@ angular.module('iteam-dashboard').directive('week', function (project, week) {
           });
         });
 
+        if (scope.userProjects.length){
+          scope.summary = {
+            text: user.getPersonalSummary(weekHours, scope.user),
+            planned: scope.userProjects.reduce(function(a,b){
+              return a + b.planned;
+            }, 0),
+            reported: scope.userProjects.reduce(function(a,b){
+              return a + b.reported;
+            }, 0),
+            biggest: {
+              project: scope.userProjects[0].project,
+              planned: scope.userProjects[0].planned,
+              reported: scope.userProjects[0].reported,
+              departments: scope.userProjects.reduce(function(a,b){
+                var department = a[b.department] = a[b.department] || {};
+                department.planned = department.planned + b.planned || 0;
+                department.reported = department.reported + b.reported || 0;
+                return a;
+              }, {})
+            }
+          };
+        } else {
+          scope.summary = {
+            text: 'Inga planerade projekt'
+          };
+        }
 
       });
     }

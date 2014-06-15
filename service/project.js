@@ -91,8 +91,8 @@ angular.module('iteam-dashboard').service('project', function () {
       return projects;
 
     },
-    getWeekHoursSummary : function(week){
-      var projects = project.getProjects(week);
+    getWeekHoursSummary : function(weekHours){
+      var projects = project.getProjects(weekHours);
       return Object.keys(projects).reduce(function(userProjects, projectId){
         var project = projects[projectId];
 

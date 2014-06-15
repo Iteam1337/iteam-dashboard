@@ -21,6 +21,11 @@ angular.module('iteam-dashboard').service('user', function(project) {
         });
         return users;
       }, {});
+    },
+    getPersonalSummary: function(weekHours, userName){
+      // TODO: do it
+      // 
+      return userName + ' fick en stor sudd igen på projektet X, förutom det finns det mest småduttar på fyra mindre interna projekt.';
     }
   };
 
