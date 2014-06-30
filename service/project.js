@@ -87,7 +87,6 @@ angular.module('iteam-dashboard').service('project', function () {
       }).forEach(function(project){
         project.color = colorSet[(parseInt(project.projectId,10)) % colorSet.length] || 'rgba(0,0,0,0.2)';
       });
-
       return projects;
 
     },

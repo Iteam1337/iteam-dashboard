@@ -29,7 +29,6 @@ angular.module('iteam-dashboard').service('week', function($resource, $q) {
           yearWeek: yearWeek
         })
       };
-
       week.$promise = $q.all([week.planned.$promise, week.reported.$promise]);
 
       return week;

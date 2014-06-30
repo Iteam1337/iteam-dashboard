@@ -1,0 +1,20 @@
+<ion-nav-bar></ion-nav-bar>
+<ion-view title="Select project">
+  <ion-content>
+    <ion-slide-box>
+      <ion-slide>
+        <div class="box">
+          <h2>vecka {{yearWeek}}</h2>
+          <ion-list class="card">
+              <a ng-repeat="project in projects" class="item item-icon-left item-icon-right" ui-sref="tab.weekproject.user({project: project.name})">
+                <i class="icon ion-person"></i>
+                {{project.name.toUpperCase()}}
+                <i class="icon ion-ios7-arrow-forward"></i>
+              </a>
+          </ion-list>
+        </div>
+      </ion-slide> 
+    </ion-slide-box>
+  </ion-content>
+  <ion-nav-view name="project-user-tab"></ion-nav-view>
+</ion-view>

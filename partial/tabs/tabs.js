@@ -1,4 +1,3 @@
-angular.module('iteam-dashboard').controller('TabsCtrl', function ($scope) {
+angular.module('iteam-dashboard').controller('TabsCtrl', function () {
   'use strict';
-
 });

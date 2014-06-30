@@ -1,6 +1,6 @@
 angular.module('iteam-dashboard', ['ngResource', 'ionic', 'nvd3ChartDirectives']);
 
-angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterProvider) {
   'use strict';
 
   $stateProvider.state('tab', {
@@ -28,22 +28,33 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
       }
     }
   });
-  
 
-	$stateProvider.state('weekproject', {
-    url: '/week/:yearWeek/projects',
-    templateUrl: 'partial/week/project/project.html'
+  $stateProvider.state('tab.weekproject', {
+    url: '/project',
+    views: {
+      'project-tab': {
+        templateUrl: 'partial/projectWeek/projectWeek.html',
+        controller: 'ProjectWeekCtrl'
+      }
+    }
   });
-	$stateProvider.state('weekuser', {
-    url: '/week/:yearWeek/users',
-    templateUrl: 'partial/week/user/user.html'
+
+  $stateProvider.state('tab.weekproject.user', {
+    url: '/:project',
+    views: {
+      'project-user-tab': {
+        templateUrl: 'partial/projectWeek/user/user.html',
+        controller: 'ProjectWeekUserCtrl'
+      }
+    }
   });
+
 
 	/* Add New Routes Above */
-  //$locationProvider.html5Mode(true);
+
   
   // For any unmatched url, redirect to /
-  $urlRouterProvider.otherwise('/tab/personal');
+ $urlRouterProvider.otherwise('/tab/personal');
 
 });
 
