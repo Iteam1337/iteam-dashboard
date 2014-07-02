@@ -7,7 +7,7 @@ angular.module('iteam-dashboard').controller('ProjectWeekCtrl', function ($scope
     $scope.yearWeek = $stateParams.yearWeek;
   }
 
-  $scope.week = week.getWeekHours($scope.yearWeek);
+  $scope.week = week.getWeekHours($scope.currentWeek);
 
 
   $scope.week.$promise.then(function () {
