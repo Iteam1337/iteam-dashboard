@@ -40,10 +40,10 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
     }
   });
 
-  $stateProvider.state('tab.project', {
-    url: '/project/:yearweek/:project',
+  $stateProvider.state('tab.weekproject.user', {
+    url: '/:project',
     views: {
-      'project-tab': {
+      'project-user': {
         templateUrl: 'partial/projectWeek/user/user.html',
         controller: 'ProjectWeekUserCtrl'
       }

@@ -1,7 +1,6 @@
-angular.module('iteam-dashboard').controller('WeekCtrl', function ($scope, $stateParams) {
+angular.module('iteam-dashboard').controller('WeekCtrl', function ($scope) {
   'use strict';
 
-  console.log($stateParams);
   $scope.users = ['abo', 'cln', 'rfr', 'rln', 'jgn', 'hrn', 'ram', 'jok', 'sru', 'acr', 'mln', 'dpn'].sort();
   
 
