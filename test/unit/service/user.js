@@ -80,7 +80,6 @@ describe('user', function () {
     it('should return summary of users for a week', function () {
       var week = dummyWeek;
       var users = user.getUsers(week);
-      console.log(users);
       expect(users).to.have.property('jgn');
       expect(users.jgn).to.have.property('planned');
       expect(users.jgn).to.have.property('reported');
