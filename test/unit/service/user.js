@@ -15,15 +15,18 @@ describe('user', function () {
           {
             ProjectId: 1337,
             ProjectName: 'Leet',
-            PlannedHoursPerEmployee:[
-              {
-                EmployeeShortName: 'jgn',
-                PlannedHoursPerRole: {
-                  int: 1,
-                  dev: 2
-                }
+            PlannedHoursPerEmployee:[{
+              EmployeeShortName: 'jgn',
+              PlannedHoursPerRole: {
+                int: 1,
+                dev: 2
               }
-            ]
+            }, {
+              EmployeeShortName: 'abc',
+              PlannedHoursPerRole: {
+                dev: 3
+              }
+            }]
           },
           {
             ProjectId: 1338,
@@ -61,6 +64,13 @@ describe('user', function () {
               1339,
               1338
             ]
+          }, {
+            ProjectId: 1339,
+            NumberOfHours: 2,
+            EmployeeShortName: 'def',
+            ParentProjectIds: [
+              577
+            ]
           }
         ]
       };
@@ -70,6 +80,7 @@ describe('user', function () {
     it('should return summary of users for a week', function () {
       var week = dummyWeek;
       var users = user.getUsers(week);
+      console.log(users);
       expect(users).to.have.property('jgn');
       expect(users.jgn).to.have.property('planned');
       expect(users.jgn).to.have.property('reported');

@@ -18,9 +18,15 @@ angular.module('iteam-dashboard').service('week', function($resource, $q) {
     }
   });
 
+  var weeks = {};
+
   var week = {
     getYearWeek: function(now){ return moment(now).year() + '' + moment().isoWeek(); },
     getWeekHours: function (yearWeek) {
+      if(weeks[yearWeek]) {
+        return weeks[yearWeek];
+      }
+
       var week = {
         planned: api.planned({
           yearWeek: yearWeek
@@ -30,7 +36,9 @@ angular.module('iteam-dashboard').service('week', function($resource, $q) {
         })
       };
       week.$promise = $q.all([week.planned.$promise, week.reported.$promise]);
-
+      
+      weeks[yearWeek] = week;
+      
       return week;
     }
   };
