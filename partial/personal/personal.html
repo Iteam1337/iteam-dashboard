@@ -7,7 +7,7 @@
         <div class="box">
           <h2>vecka {{yearWeek.week}}</h2>
           <ion-list class="card">
-            <a ng-repeat="(user, summary) in users" class="item item-icon-left item-icon-right" ui-sref="personal.details({ user:user })">
+            <a ng-repeat="(user, summary) in users" class="item item-icon-left item-icon-right" ui-sref="personalDetails({ user:user })">
               <i class="icon ion-person"></i>
               {{user.toUpperCase()}}
               <i class="icon ion-ios7-arrow-forward"></i>

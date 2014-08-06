@@ -13,10 +13,10 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
     }
   });
 
-  $stateProvider.state('personal.details', {
-    url: '/:user',
+  $stateProvider.state('personalDetails', {
+    url: '/personal/:user',
     views: {
-      'personal-details-tab': {
+      'personal-tab': {
         templateUrl: 'partial/personal/details/details.html',
         controller: 'PersonalDetailsCtrl'
       }
@@ -35,10 +35,10 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
     }
   });
 
-  $stateProvider.state('project.details', {
-    url: '/:project',
+  $stateProvider.state('projectDetails', {
+    url: '/project/:project',
     views: {
-      'project-details-tab': {
+      'project-tab': {
         templateUrl: 'partial/project/details/details.html',
         controller: 'ProjectDetailsCtrl'
       }

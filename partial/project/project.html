@@ -6,7 +6,7 @@
         <div class="box">
           <h2>vecka {{yearWeek}}</h2>
           <ion-list class="card">
-              <a ng-repeat="project in projects" class="item item-icon-left item-icon-right" ui-sref="project.details({project: project.name})">
+              <a ng-repeat="project in projects" class="item item-icon-left item-icon-right" ui-sref="projectDetails({project: project.name})">
                 <i class="icon ion-person"></i>
                 {{project.name.toUpperCase()}}
                 <i class="icon ion-ios7-arrow-forward"></i>
@@ -16,5 +16,4 @@
       </ion-slide> 
     </ion-slide-box>
   </ion-content>
-  <ion-nav-view name="project-details-tab" animation="slide-left-right"></ion-nav-view>
 </ion-view>   
