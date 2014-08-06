@@ -1,4 +1,4 @@
-describe('ProjectWeekCtrl', function () {
+describe('ProjectCtrl', function () {
 
   var scope;
   var ctrl;
@@ -27,7 +27,7 @@ describe('ProjectWeekCtrl', function () {
           name: 'bar'
         }])
       };
-      ctrl = $controller('ProjectWeekCtrl', {
+      ctrl = $controller('ProjectCtrl', {
         $scope: scope,
         week: week,
         project: project

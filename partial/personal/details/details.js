@@ -1,4 +1,4 @@
-angular.module('iteam-dashboard').controller('WeekUserCtrl', function ($scope, $stateParams) {
+angular.module('iteam-dashboard').controller('PersonalDetailsCtrl', function ($scope, $stateParams) {
   'use strict';
 
   $scope.activeSlide = 5;

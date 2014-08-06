@@ -1,4 +1,4 @@
-angular.module('iteam-dashboard').controller('WeekCtrl', function ($scope, week, user, $window) {
+angular.module('iteam-dashboard').controller('PersonalCtrl', function ($scope, week, user, $window) {
   'use strict';
 
 //  currentWeeks.length - 1 from factory
@@ -17,6 +17,7 @@ angular.module('iteam-dashboard').controller('WeekCtrl', function ($scope, week,
     };
   });
 
+// Move getUsers to week service
   function getUsers(yearWeek) {
     var weekSummary = week.getWeekHours(yearWeek);
     weekSummary.$promise
@@ -74,4 +75,5 @@ angular.module('iteam-dashboard').controller('WeekCtrl', function ($scope, week,
       return d.y;
     };
   };
+
 });

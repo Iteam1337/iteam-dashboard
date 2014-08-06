@@ -1,4 +1,4 @@
-angular.module('iteam-dashboard').controller('ProjectWeekCtrl', function ($scope, $state, $stateParams, week, project) {
+angular.module('iteam-dashboard').controller('ProjectCtrl', function ($scope, $state, $stateParams, week, project) {
   'use strict';
 
   $scope.activeSlider = 5;
@@ -17,10 +17,10 @@ angular.module('iteam-dashboard').controller('ProjectWeekCtrl', function ($scope
 
 // Move getProjects to week service
   function getProjects(yearWeek) {
-    var weekSummary = week.getWeekHours(yearWeek);
-    weekSummary.$promise
+    $scope.week = week.getWeekHours(yearWeek);
+    $scope.week.$promise
       .then(function() {
-        $scope.projects = project.getProjects(weekSummary);
+        $scope.projects = project.getProjects($scope.week);
       });
   }
   

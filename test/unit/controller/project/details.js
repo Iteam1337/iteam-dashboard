@@ -1,4 +1,4 @@
-describe('Week/userCtrl', function () {
+describe('ProjectDetailsCtrl', function () {
 
   var scope, ctrl;
 
@@ -6,7 +6,7 @@ describe('Week/userCtrl', function () {
     module('iteam-dashboard');
     inject(function ($rootScope, $controller) {
       scope = $rootScope.$new();
-      ctrl = $controller('Week/userCtrl', {$scope: scope});
+      ctrl = $controller('ProjectDetailsCtrl', {$scope: scope});
     });
   });
 

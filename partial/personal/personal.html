@@ -7,7 +7,7 @@
         <div class="box">
           <h2>vecka {{yearWeek.week}}</h2>
           <ion-list class="card">
-            <a ng-repeat="(user, summary) in users" class="item item-icon-left item-icon-right" ui-sref="tab.user({ yearweek: currentWeek, user:user })">
+            <a ng-repeat="(user, summary) in users" class="item item-icon-left item-icon-right" ui-sref="personal.details({ user:user })">
               <i class="icon ion-person"></i>
               {{user.toUpperCase()}}
               <i class="icon ion-ios7-arrow-forward"></i>
@@ -30,4 +30,6 @@
         </div>
       </ion-slide>
     </ion-slide-box>
+  </ion-content>
+  <ion-nav-view name="personal-details-tab" animation="slide-left-right"></ion-nav-view>
 </ion-view>

@@ -3,45 +3,48 @@ angular.module('iteam-dashboard', ['ngResource', 'ionic', 'nvd3ChartDirectives']
 angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterProvider) {
   'use strict';
 
-  // $stateProvider.state('tab', {
-  //   url: '/tab',
-  //   abstract: true,
-  //   templateUrl: 'partial/tabs/tabs.html',
-  //   controller: 'TabsCtrl'
-  // });
-
-
-  $stateProvider.state('tab.user', {
-    url: '/personal/:yearweek/:user',
-    views: {
-      'personal-tab': {
-        templateUrl: 'partial/week/user/user.html',
-        controller: 'WeekUserCtrl'
-      }
-    }
-  });
- 
-
   $stateProvider.state('personal', {
     url: '/personal',
     views: {
       'personal-tab': {
-        templateUrl: 'partial/week/week.html',
-        controller: 'WeekCtrl'
+        templateUrl: 'partial/personal/personal.html',
+        controller: 'PersonalCtrl'
       }
     }
   });
+
+  $stateProvider.state('personal.details', {
+    url: '/:user',
+    views: {
+      'personal-details-tab': {
+        templateUrl: 'partial/personal/details/details.html',
+        controller: 'PersonalDetailsCtrl'
+      }
+    }
+  });
+
 // TODO:
 // optional week for detail route
   $stateProvider.state('project', {
     url: '/project',
     views: {
       'project-tab': {
-        templateUrl: 'partial/projectWeek/projectWeek.html',
-        controller: 'ProjectWeekCtrl'
+        templateUrl: 'partial/project/project.html',
+        controller: 'ProjectCtrl'
       }
     }
   });
+
+  $stateProvider.state('project.details', {
+    url: '/:project',
+    views: {
+      'project-details-tab': {
+        templateUrl: 'partial/project/details/details.html',
+        controller: 'ProjectDetailsCtrl'
+      }
+    }
+  });
+
 	/* Add New Routes Above */
 
   
