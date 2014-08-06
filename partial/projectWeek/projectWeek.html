@@ -1,8 +1,8 @@
 <ion-nav-bar></ion-nav-bar>
 <ion-view title="Select project">
   <ion-content>
-    <ion-slide-box>
-      <ion-slide>
+    <ion-slide-box on-slide-changed="weekSelect($index)" active-slide="activeSlider">
+      <ion-slide ng-repeat="yearWeek in weeks">
         <div class="box">
           <h2>vecka {{yearWeek}}</h2>
           <ion-list class="card">
@@ -17,4 +17,4 @@
     </ion-slide-box>
   </ion-content>
   <ion-nav-view name="project-user"></ion-nav-view>
-</ion-view>
+</ion-view>   

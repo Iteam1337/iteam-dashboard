@@ -1,12 +1,10 @@
-angular.module('iteam-dashboard').controller('WeekCtrl', function ($scope, week, user) {
+angular.module('iteam-dashboard').controller('WeekCtrl', function ($scope, week, user, $window) {
   'use strict';
-
- 
 
   $scope.activeSlider = 5;
 
   $scope.weeks = [-5, -4, -3, -2, -1, 0, 1].map(function(delta){
-    var date = moment().add('days', 7 * delta);
+    var date = $window.moment().add('days', 7 * delta);
     return {
       year: date.year(),
       week: date.isoWeek(),
@@ -17,19 +15,19 @@ angular.module('iteam-dashboard').controller('WeekCtrl', function ($scope, week,
     };
   });
 
- var yearWeek = week.getWeekHours($scope.weeks[$scope.activeSlider].toString());
-
-  yearWeek.$promise.then(function () {
-    $scope.users = user.getUsers(yearWeek);
-  });
-
+  function getUsers(yearWeek) {
+    var weekSummary = week.getWeekHours(yearWeek);
+    weekSummary.$promise
+      .then(function() {
+        $scope.users = user.getUsers(weekSummary);
+      });
+  }
   
+  getUsers($scope.weeks[$scope.activeSlider].toString());
+
   $scope.weekSelect = function (index) {
     $scope.users = [];
-    yearWeek = week.getWeekHours($scope.weeks[index].toString());
-    yearWeek.$promise.then(function () {
-        $scope.users = user.getUsers(yearWeek);
-      });
+    getUsers($scope.weeks[index].toString());
   };
 
   $scope.exampleData = [
