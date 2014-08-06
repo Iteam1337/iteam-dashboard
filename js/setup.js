@@ -3,12 +3,12 @@ angular.module('iteam-dashboard', ['ngResource', 'ionic', 'nvd3ChartDirectives']
 angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterProvider) {
   'use strict';
 
-  $stateProvider.state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'partial/tabs/tabs.html',
-    controller: 'TabsCtrl'
-  });
+  // $stateProvider.state('tab', {
+  //   url: '/tab',
+  //   abstract: true,
+  //   templateUrl: 'partial/tabs/tabs.html',
+  //   controller: 'TabsCtrl'
+  // });
 
 
   $stateProvider.state('tab.user', {
@@ -20,22 +20,9 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
       }
     }
   });
+ 
 
-
-  $stateProvider.state('tab.weekproject.user', {
-    url: '/:project',
-    views: {
-      'project-user': {
-        templateUrl: 'partial/projectWeek/user/user.html',
-        controller: 'ProjectWeekUserCtrl'
-      }
-    }
-  });
-
-
-  
-
-  $stateProvider.state('tab.personal', {
+  $stateProvider.state('personal', {
     url: '/personal',
     views: {
       'personal-tab': {
@@ -44,8 +31,9 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
       }
     }
   });
-
-  $stateProvider.state('tab.project', {
+// TODO:
+// optional week for detail route
+  $stateProvider.state('project', {
     url: '/project',
     views: {
       'project-tab': {
@@ -58,7 +46,7 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
 
   
   // For any unmatched url, redirect to /
- $urlRouterProvider.otherwise('/tab/personal');
+ $urlRouterProvider.otherwise('/personal');
 
 });
 

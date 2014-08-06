@@ -1,8 +1,10 @@
 angular.module('iteam-dashboard').controller('WeekCtrl', function ($scope, week, user, $window) {
   'use strict';
 
+//  currentWeeks.length - 1 from factory
   $scope.activeSlider = 5;
 
+//  TODO: move to factory -> array
   $scope.weeks = [-5, -4, -3, -2, -1, 0, 1].map(function(delta){
     var date = $window.moment().add('days', 7 * delta);
     return {

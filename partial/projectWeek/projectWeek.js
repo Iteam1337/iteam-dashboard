@@ -15,6 +15,7 @@ angular.module('iteam-dashboard').controller('ProjectWeekCtrl', function ($scope
     };
   });
 
+// Move getProjects to week service
   function getProjects(yearWeek) {
     var weekSummary = week.getWeekHours(yearWeek);
     weekSummary.$promise
