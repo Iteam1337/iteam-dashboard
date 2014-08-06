@@ -10,15 +10,6 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
     controller: 'TabsCtrl'
   });
 
-  $stateProvider.state('tab.personal', {
-    url: '/personal/:yearweek',
-    views: {
-      'personal-tab': {
-        templateUrl: 'partial/week/week.html',
-        controller: 'WeekCtrl'
-      }
-    }
-  });
 
   $stateProvider.state('tab.user', {
     url: '/personal/:yearweek/:user',
@@ -30,15 +21,6 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
     }
   });
 
-  $stateProvider.state('tab.weekproject', {
-    url: '/project/:yearweek',
-    views: {
-      'project-tab': {
-        templateUrl: 'partial/projectWeek/projectWeek.html',
-        controller: 'ProjectWeekCtrl'
-      }
-    }
-  });
 
   $stateProvider.state('tab.weekproject.user', {
     url: '/:project',
@@ -51,11 +33,32 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
   });
 
 
+  
+
+  $stateProvider.state('tab.personal', {
+    url: '/personal',
+    views: {
+      'personal-tab': {
+        templateUrl: 'partial/week/week.html',
+        controller: 'WeekCtrl'
+      }
+    }
+  });
+
+  $stateProvider.state('tab.project', {
+    url: '/project',
+    views: {
+      'project-tab': {
+        templateUrl: 'partial/projectWeek/projectWeek.html',
+        controller: 'ProjectWeekCtrl'
+      }
+    }
+  });
 	/* Add New Routes Above */
 
   
   // For any unmatched url, redirect to /
- $urlRouterProvider.otherwise('/tab/personal/');
+ $urlRouterProvider.otherwise('/tab/personal');
 
 });
 

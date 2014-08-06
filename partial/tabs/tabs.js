@@ -3,7 +3,7 @@ angular.module('iteam-dashboard').controller('TabsCtrl', function ($scope, week,
   $scope.currentWeek = week.getYearWeek(Date.now());
  
   $scope.goToProjects = function () {
-    $state.go('tab.weekproject', { yearweek: $scope.currentWeek });
+    $state.go('tab.project', { yearweek: $scope.currentWeek });
   };
 
   $scope.goToPersonal = function () {
