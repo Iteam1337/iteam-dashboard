@@ -2,14 +2,13 @@ angular.module('iteam-dashboard').controller('PersonalCtrl', function ($scope, w
   'use strict';
 
   // TODO: currentWeeks.length - 1 from factory
-  $scope.activeSlider = 5;
+  $scope.activeSlider = $scope.activeWeek.index;
 
-  $scope.weekSelect = function (index) {
-    var activeWeek = $scope.weeks[index];
-    $scope.weeks[index].users = week.getUsers(activeWeek.yearWeek);
-  };
+  $scope.$watch('activeWeek.yearWeek', function () {
+    $scope.weeks[$scope.activeWeek.index].users = week.getUsers($scope.activeWeek.yearWeek);
+  });
 
-  $scope.weeks[$scope.activeSlider].users = week.getUsers(week.getYearWeek());
+  $scope.weeks[$scope.activeWeek.index].users = week.getUsers($scope.activeWeek.yearWeek);
 
   $scope.exampleData = [
     {

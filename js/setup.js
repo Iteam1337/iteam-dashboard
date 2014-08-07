@@ -68,6 +68,7 @@ angular.module('iteam-dashboard').run(function ($rootScope) {
   };
 
   $rootScope.activeWeek = {
+    index: 5,
     yearWeek: moment().year() + '' + moment().isoWeek()
   };
 
@@ -83,4 +84,9 @@ angular.module('iteam-dashboard').run(function ($rootScope) {
     };
     return week;
   });
+
+  $rootScope.weekSelect = function (index) {
+    $rootScope.activeWeek.index = index;
+    $rootScope.activeWeek.yearWeek = $rootScope.weeks[index].yearWeek;
+  };
 });

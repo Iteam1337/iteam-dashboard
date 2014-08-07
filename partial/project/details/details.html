@@ -5,12 +5,16 @@
 </ion-nav-bar>
 <ion-view title="{{project}}">
   <ion-content>
-     <a ng-repeat="(user, hours) in users" class="item item-icon-left item-icon-right" ui-sref="tab.user({user:user})">
-        <i class="icon ion-person"></i>
-        {{user.toUpperCase()}}
-        Planned: {{hours.planned}} | Reported: {{hours.reported}}
-        <i class="icon ion-ios7-arrow-forward"></i>
-      </a>  
+    <ion-slide-box active-slide="activeSlide" on-slide-changed="slideHasChanged($index)">
+      <ion-slide ng-repeat="yerWeek in weeks">
+        <a ng-repeat="(user, hours) in users" class="item item-icon-left item-icon-right" ui-sref="tab.user({user:user})">
+          <i class="icon ion-person"></i>
+            {{user.toUpperCase()}}
+            Planned: {{hours.planned}} | Reported: {{hours.reported}}
+          <i class="icon ion-ios7-arrow-forward"></i>
+        </a>  
+      </ion-slide>  
+    </ion-slide-box>
   </ion-content>
 </ion-view>
 
