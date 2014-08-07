@@ -5,9 +5,9 @@
   </ion-nav-back-button>
 </ion-nav-bar>
 -->
-<ion-view title="{{project}}">
+<ion-view title="{{project}}" class="project-details">
   <ion-content>
-    <!--
+<!--
     <div class="box">
      <a ng-repeat="(user, hours) in users" class="item item-icon-left item-icon-right" ui-sref="tab.user({user:user})">
         <i class="icon ion-person"></i>
@@ -16,20 +16,47 @@
         <i class="icon ion-ios7-arrow-forward"></i>
       </a>
     </div>
-    -->
+ -->
 
     <div class="box">
-      <nvd3-pie-chart
-          data="exampleData"
-          id="exampleId"
-          showLabels="true"
-          x="xFunction()"
-          y="yFunction()"
+     <a ng-repeat="object in data_1" class="item item-icon-left item-icon-right" ui-sref="tab.user({user:object.user})" data-ng-show="!!object.reported && !!object.planned">
+        <i class="icon">
+          <img data-ng-src="{{avatar(object.user)}}" />
+        </i>
+        {{object.user}}
+        {{!!object.planned && 'Planned: ' + object.planned || '' }} {{ !!object.reported && 'Reported: ' + object.reported || '' }}
+        <i class="icon ion-ios7-arrow-forward"></i>
+      </a>
+    </div>
+
+    <div class="box">
+      <div class="chart pie">
+        <nvd3-pie-chart
+          data="data_1"
+          class="bottom"
+          x="get('user')"
+          y="get('planned')"
           donut="true"
-          donutRatio=".5"
-          donutLabelsOutside="true">
-        <svg height="500" width="200"></svg>
-      </nvd3-pie-chart>
+          donutRatio="1"
+          height="300"
+          width="300"
+          color="color('planned')">
+          <svg width="300" height="300"></svg>
+        </nvd3-pie-chart>
+
+        <nvd3-pie-chart
+          data="data_1"
+          x="get('user')"
+          y="get('reported')"
+          donut="true"
+          donutRatio=".6"
+          height="300"
+          width="300"
+          style="z-index: 0;"
+          color="color('reported', true)">
+          <svg width="300" height="300"></svg>
+        </nvd3-pie-chart>
+      </div>
     </div>
   </ion-content>
 </ion-view>

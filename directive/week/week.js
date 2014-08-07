@@ -1,4 +1,4 @@
-angular.module('iteam-dashboard').directive('week', function (project, week, user) {
+angular.module('iteam-dashboard').directive('week', function (project, week, user, avatar) {
   'use strict';
 
   return {
@@ -10,8 +10,7 @@ angular.module('iteam-dashboard').directive('week', function (project, week, use
     },
     templateUrl: 'directive/week/week.html',
     controller: function ($scope, md5) {
-      $scope.avatar = 'http://www.gravatar.com/avatar/';
-      $scope.avatar += md5.createHash($scope.user + '@iteam.se');
+      $scope.avatar = avatar.generate($scope.user);
     },
     link: function (scope, element, attrs, fn) {
 
