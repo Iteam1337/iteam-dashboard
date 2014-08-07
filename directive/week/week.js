@@ -17,7 +17,7 @@ angular.module('iteam-dashboard').directive('week', function (project, week, use
       scope.height = parseFloat(attrs.height, 10);
       scope.width = parseFloat(attrs.width, 10);
       scope.top = 100;
-      
+
       scope.$watch('yearweek.yearWeek', function () {
         week.getProjectsForUser(scope.yearweek.yearWeek, scope.user)
           .then(function (filteredProjects) {
@@ -43,34 +43,6 @@ angular.module('iteam-dashboard').directive('week', function (project, week, use
               });
             });
 
-<<<<<<< HEAD
-          if (scope.userProjects.length){
-            scope.summary = {
-              text: user.getPersonalSummary(scope.userProjects, scope.user),
-              planned: scope.userProjects.reduce(function(a,b){
-                return a + b.planned;
-              }, 0),
-              reported: scope.userProjects.reduce(function(a,b){
-                return a + b.reported;
-              }, 0),
-              biggest: {
-                project: scope.userProjects[0].project,
-                planned: scope.userProjects[0].planned,
-                reported: scope.userProjects[0].reported,
-                departments: scope.userProjects.reduce(function(a,b){
-                  var department = a[b.department] = a[b.department] || {};
-                  department.planned = department.planned + b.planned || 0;
-                  department.reported = department.reported + b.reported || 0;
-                  return a;
-                }, {})
-              }
-            };
-          } else {
-            scope.summary = {
-              text: 'Inga planerade projekt'
-            };
-          }
-=======
             if (scope.userProjects.length){
               scope.summary = {
                 text: user.getPersonalSummary(scope.userProjects, scope.user),
@@ -96,8 +68,7 @@ angular.module('iteam-dashboard').directive('week', function (project, week, use
               scope.summary = {
                 text: 'Inga planerade projekt'
               };
-            } 
->>>>>>> c5f818fe22fea1f6b9d587e3cfb6ed0deca55b68
+            }
         });
 
       });
