@@ -26,16 +26,6 @@ angular.module('iteam-dashboard').service('user', function(project) {
       // TODO: do it
       // 
       return userName + ' fick en stor sudd igen på projektet X, förutom det finns det mest småduttar på fyra mindre interna projekt.';
-    },
-    getProjectUsers: function (week, projectName) {
-      var projects = project.getProjects(week);
-      var results = Object.keys(projects).reduce(function (users, projectId) {
-        if(projectName === projects[projectId].name) {
-          users = projects[projectId].users;
-        }
-        return users;
-      }, {});
-      return results;
     }
   };
 

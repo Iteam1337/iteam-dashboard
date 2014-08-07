@@ -1,4 +1,7 @@
-angular.module('iteam-dashboard').controller('ProjectDetailsCtrl', function ($scope, $stateParams, user) {
+angular.module('iteam-dashboard').controller('ProjectDetailsCtrl', function ($scope, $stateParams, week) {
   'use strict';
-  $scope.users = user.getProjectUsers($scope.week, $stateParams.project);
+  week.getUsersForProject($scope.activeWeek.yearWeek, $stateParams.projectId)
+    .then(function (filtered) {
+      $scope.users = filtered;
+    });
 });

@@ -2,11 +2,12 @@ angular.module('iteam-dashboard').controller('ProjectCtrl', function ($scope, we
   'use strict';
 
   $scope.activeSlider = 5;
+  $scope.activeWeek.yearWeek = $scope.weeks[$scope.activeSlider].yearWeek;
 
   $scope.weeks[$scope.activeSlider].projects = week.getProjects(week.getYearWeek());
 
   $scope.weekSelect = function (index) {
-    var activeWeek = $scope.weeks[index];
-    $scope.weeks[index].projects = week.getProjects(activeWeek.yearWeek);
+    $scope.activeWeek.yearWeek = $scope.weeks[index].yearWeek;
+    $scope.weeks[index].projects = week.getProjects($scope.activeWeek.yearWeek);
   };
 });
