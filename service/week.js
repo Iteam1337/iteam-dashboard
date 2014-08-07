@@ -50,7 +50,15 @@ angular.module('iteam-dashboard').service('week', function($resource, $q, projec
       });
       return projects;
     },
-    getUsers: function () {}
+
+    getUsers: function (yearWeek) {
+      var weekHours = getWeekHours(yearWeek);
+      var users = {};
+      weekHours.$promise.then(function () {
+        angular.extend(users, user.getUsers(weekHours));
+      });
+      return users;
+    }
   };
 
   return week;
