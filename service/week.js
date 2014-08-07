@@ -50,7 +50,29 @@ angular.module('iteam-dashboard').service('week', function($resource, $q, projec
       });
       return projects;
     },
-    getUsers: function () {}
+
+    getUsers: function (yearWeek) {
+      var weekHours = getWeekHours(yearWeek);
+      var users = {};
+      weekHours.$promise.then(function () {
+        angular.extend(users, user.getUsers(weekHours));
+      });
+      return users;
+    },
+
+    getFilteredProjects: function (yearWeek, filter) {
+      var deferred = $q.defer();
+      var weekHours = getWeekHours(yearWeek);
+      weekHours.$promise.then(function () {
+        var filtered = project.getWeekHoursSummary(weekHours).filter(function (hour) {
+          return hour.user === filter;
+        }).sort(function (a, b) {
+          return a.planned - b.planned;
+        });
+        deferred.resolve(filtered);
+      });
+      return deferred.promise;
+    }
   };
 
   return week;

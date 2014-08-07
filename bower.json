@@ -16,6 +16,10 @@
     "moment": "~2.4.0",
     "angularjs-nvd3-directives": "~0.0.7",
     "ionic": "driftyco/ionic-bower#master",
-    "angular-md5": "~0.1.7"
+    "angular-md5": "~0.1.7",
+    "nvd3": "~1.1.15-beta"
+  },
+  "resolutions": {
+    "d3": "~3.4.1"
   }
 }
