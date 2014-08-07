@@ -67,4 +67,16 @@ angular.module('iteam-dashboard').run(function ($rootScope) {
     }
   };
 
+  $rootScope.weeks = [-5, -4, -3, -2, -1, 0, 1].map(function(delta){
+    var date = moment().add('days', 7 * delta);
+    return {
+      yearWeek: date.year() + '' + date.isoWeek(),
+      year: date.year(),
+      week: date.isoWeek(),
+      delta : delta,
+      projects: {},
+      users: {}
+    };
+  });
+
 });

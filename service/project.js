@@ -88,7 +88,6 @@ angular.module('iteam-dashboard').service('project', function () {
         project.color = colorSet[(parseInt(project.projectId,10)) % colorSet.length] || 'rgba(0,0,0,0.2)';
       });
       return projects;
-
     },
     getWeekHoursSummary : function(weekHours){
       var projects = project.getProjects(weekHours);
