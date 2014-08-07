@@ -18,7 +18,7 @@ angular.module('iteam-dashboard').directive('week', function (project, week, use
       scope.height = parseFloat(attrs.height, 10);
       scope.width = parseFloat(attrs.width, 10);
       scope.top = 100;
-      week.getFilteredProjects(scope.yearweek.yearWeek, scope.user)
+      week.getProjectsForUser(scope.yearweek.yearWeek, scope.user)
         .then(function (filteredProjects) {
           scope.userProjects = filteredProjects;
           scope.scale = (scope.height - 50) / (scope.userProjects.reduce(function(max, hour){

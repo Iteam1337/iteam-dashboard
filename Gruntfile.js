@@ -194,9 +194,9 @@ module.exports = function (grunt) {
           bucket: 'stage-dashboard.iteam.se'
         }
       },
-      test: {
+      master: {
         options: {
-          bucket: 'test-dashboard.iteam.se'
+          bucket: 'master-dashboard.iteam.se'
         }
       },
     },
@@ -236,13 +236,10 @@ module.exports = function (grunt) {
     's3:stage'
   ]);
 
-  grunt.registerTask('deploy:test', [
+  grunt.registerTask('deploy:master', [
     'build',
     'test',
-    's3:test'
+    's3:master'
   ]);
-  
-  // alias for master => test
-  grunt.registerTask('deploy:master', ['deploy:test']);
 
 };

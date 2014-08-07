@@ -36,7 +36,7 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
   });
 
   $stateProvider.state('projectDetails', {
-    url: '/project/:project',
+    url: '/project/:projectId',
     views: {
       'project-tab': {
         templateUrl: 'partial/project/details/details.html',
@@ -67,9 +67,13 @@ angular.module('iteam-dashboard').run(function ($rootScope) {
     }
   };
 
+  $rootScope.activeWeek = {
+    yearWeek: moment().year() + '' + moment().isoWeek()
+  };
+
   $rootScope.weeks = [-5, -4, -3, -2, -1, 0, 1].map(function(delta){
     var date = moment().add('days', 7 * delta);
-    return {
+    var week = {
       yearWeek: date.year() + '' + date.isoWeek(),
       year: date.year(),
       week: date.isoWeek(),
@@ -77,6 +81,6 @@ angular.module('iteam-dashboard').run(function ($rootScope) {
       projects: {},
       users: {}
     };
+    return week;
   });
-
 });
