@@ -1,4 +1,4 @@
-angular.module('iteam-dashboard', ['ngResource', 'ionic', 'nvd3ChartDirectives']);
+angular.module('iteam-dashboard', ['ngResource', 'ionic', 'nvd3ChartDirectives', 'angular-md5']);
 
 angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterProvider) {
   'use strict';
@@ -47,7 +47,7 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
 
 	/* Add New Routes Above */
 
-  
+
   // For any unmatched url, redirect to /
  $urlRouterProvider.otherwise('/personal');
 

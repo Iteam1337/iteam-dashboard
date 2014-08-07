@@ -1,15 +1,16 @@
+<!--
 <ion-nav-bar>
   <ion-nav-back-button class="button-clear">
     <i class="ion-arrow-left-c"></i> Back
   </ion-nav-back-button>
 </ion-nav-bar>
+-->
 <ion-view title="{{user}}">
   <ion-content>
     <ion-slide-box ng-show="user" on-slide-changed="slideHasChanged($index)" active-slide="activeSlide">
-
       <ion-slide ng-repeat="yearWeek in weeks">
         <div class="box">
-          <week yearweek="yearWeek" user="user"></week>
+          <week yearweek="yearWeek" user="user" width="500" height="600"></week>
         </div>
       </ion-slide>
   </ion-content>

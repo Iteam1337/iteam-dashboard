@@ -1,17 +1,36 @@
+<!--
 <ion-nav-bar>
   <ion-nav-back-button class="button-clear">
     <i class="ion-arrow-left-c"></i> Back
   </ion-nav-back-button>
 </ion-nav-bar>
+-->
 <ion-view title="{{project}}">
   <ion-content>
+    <!--
+    <div class="box">
      <a ng-repeat="(user, hours) in users" class="item item-icon-left item-icon-right" ui-sref="tab.user({user:user})">
         <i class="icon ion-person"></i>
         {{user.toUpperCase()}}
         Planned: {{hours.planned}} | Reported: {{hours.reported}}
         <i class="icon ion-ios7-arrow-forward"></i>
-      </a>  
+      </a>
+    </div>
+    -->
+
+    <div class="box">
+      <nvd3-pie-chart
+          data="exampleData"
+          id="exampleId"
+          showLabels="true"
+          x="xFunction()"
+          y="yFunction()"
+          donut="true"
+          donutRatio=".5"
+          donutLabelsOutside="true">
+        <svg height="500" width="200"></svg>
+      </nvd3-pie-chart>
+    </div>
   </ion-content>
 </ion-view>
 
-      
