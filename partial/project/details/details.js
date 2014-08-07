@@ -1,9 +1,12 @@
 angular.module('iteam-dashboard').controller('ProjectDetailsCtrl', function ($scope, $stateParams, week, colors, avatar) {
   'use strict';
-  // week.getUsersForProject($scope.activeWeek.yearWeek, $stateParams.projectId)
-  // .then(function (filtered) {
-  //   $scope.users = filtered;
-  // });
+
+  $scope.activeSlide = $scope.activeWeek.index;
+
+  week.getUsersForProject($scope.activeWeek.yearWeek, $stateParams.projectId)
+    .then(function (filtered) {
+      $scope.users = filtered;
+    });
 
   function randomNumber(max) {
     return Math.max(Math.round(Math.random() * (max || 5)), 2);
@@ -82,4 +85,5 @@ angular.module('iteam-dashboard').controller('ProjectDetailsCtrl', function ($sc
       return d[key] || 0;
     };
   };
+
 });

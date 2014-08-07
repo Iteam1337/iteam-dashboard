@@ -8,26 +8,30 @@
 <ion-view title="{{project}}" class="project-details">
   <ion-content>
 <!--
-    <div class="box">
-     <a ng-repeat="(user, hours) in users" class="item item-icon-left item-icon-right" ui-sref="tab.user({user:user})">
-        <i class="icon ion-person"></i>
-        {{user.toUpperCase()}}
-        Planned: {{hours.planned}} | Reported: {{hours.reported}}
-        <i class="icon ion-ios7-arrow-forward"></i>
-      </a>
-    </div>
+    <ion-slide-box active-slide="activeSlide" on-slide-changed="slideHasChanged($index)">
+      <ion-slide ng-repeat="yerWeek in weeks">
+        <a ng-repeat="(user, hours) in users" class="item item-icon-left item-icon-right" ui-sref="tab.user({user:user})">
+          <i class="icon ion-person"></i>
+            {{user.toUpperCase()}}
+            Planned: {{hours.planned}} | Reported: {{hours.reported}}
+          <i class="icon ion-ios7-arrow-forward"></i>
+        </a>
+      </ion-slide>
+    </ion-slide-box>
  -->
 
-    <div class="box">
-     <a ng-repeat="object in data_1" class="item item-icon-left item-icon-right" ui-sref="tab.user({user:object.user})" data-ng-show="!!object.reported && !!object.planned">
-        <i class="icon">
-          <img data-ng-src="{{avatar(object.user)}}" />
-        </i>
-        {{object.user}}
-        {{!!object.planned && 'Planned: ' + object.planned || '' }} {{ !!object.reported && 'Reported: ' + object.reported || '' }}
-        <i class="icon ion-ios7-arrow-forward"></i>
-      </a>
-    </div>
+    <ion-slide-box active-slide="activeSlide" on-slide-changed="slideHasChanged($index)">
+      <ion-slide>
+        <a ng-repeat="object in data_1" class="item item-icon-left item-icon-right" ui-sref="tab.user({user:object.user})" data-ng-show="!!object.reported && !!object.planned">
+          <i class="icon">
+            <img data-ng-src="{{avatar(object.user)}}" />
+          </i>
+          {{object.user}}
+          {{!!object.planned && 'Planned: ' + object.planned || '' }} {{ !!object.reported && 'Reported: ' + object.reported || '' }}
+          <i class="icon ion-ios7-arrow-forward"></i>
+        </a>
+      </ion-slide>
+    </ion-slide-box>
 
     <div class="box">
       <div class="chart pie">
