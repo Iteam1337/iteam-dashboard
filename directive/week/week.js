@@ -1,4 +1,4 @@
-angular.module('iteam-dashboard').directive('week', function (project, week, user) {
+angular.module('iteam-dashboard').directive('week', function (project, week, user, avatar) {
   'use strict';
 
   return {
@@ -9,12 +9,15 @@ angular.module('iteam-dashboard').directive('week', function (project, week, use
       user: '='
     },
     templateUrl: 'directive/week/week.html',
+    controller: function ($scope, md5) {
+      $scope.avatar = avatar.generate($scope.user);
+    },
     link: function (scope, element, attrs, fn) {
-      
+
       scope.height = parseFloat(attrs.height, 10);
       scope.width = parseFloat(attrs.width, 10);
       scope.top = 100;
-      
+
       scope.$watch('yearweek.yearWeek', function () {
         week.getProjectsForUser(scope.yearweek.yearWeek, scope.user)
           .then(function (filteredProjects) {
@@ -65,7 +68,7 @@ angular.module('iteam-dashboard').directive('week', function (project, week, use
               scope.summary = {
                 text: 'Inga planerade projekt'
               };
-            } 
+            }
         });
 
       });

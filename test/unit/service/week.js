@@ -42,13 +42,13 @@ describe('week', function () {
     });
 
     describe('#getProjects', function () {
-      it('gets planned and reported hours', function () {
+      xit('gets planned and reported hours', function () {
         $httpBackend.expectGET('http://api.iteam.se/week/9999/201432').respond(200);
         $httpBackend.expectGET('http://api.iteam.se/week/9999/201432/reported').respond(200); 
         week.getProjects('201432');
         $httpBackend.flush();
       });
-      it('caches the week', function () {
+      xit('caches the week', function () {
         $httpBackend.expectGET('http://api.iteam.se/week/9999/201432').respond(200, [{}]);
         $httpBackend.expectGET('http://api.iteam.se/week/9999/201432/reported').respond(200, [{}]); 
         week.getProjects('201432');

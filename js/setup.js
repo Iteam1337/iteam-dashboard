@@ -1,4 +1,4 @@
-angular.module('iteam-dashboard', ['ngResource', 'ionic', 'nvd3ChartDirectives']);
+angular.module('iteam-dashboard', ['ngResource', 'ionic', 'nvd3ChartDirectives', 'angular-md5']);
 
 angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterProvider) {
   'use strict';
@@ -47,13 +47,13 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
 
 	/* Add New Routes Above */
 
-  
+
   // For any unmatched url, redirect to /
  $urlRouterProvider.otherwise('/personal');
 
 });
 
-angular.module('iteam-dashboard').run(function ($rootScope) {
+angular.module('iteam-dashboard').run(function ($rootScope, week) {
   'use strict';
 
   $rootScope.safeApply = function (fn) {
@@ -80,6 +80,14 @@ angular.module('iteam-dashboard').run(function ($rootScope) {
     return week;
   });
 
+  $rootScope.weekSelect = function (index) {
+    $rootScope.activeWeek = $rootScope.weeks[index];
+  };
+
   $rootScope.activeWeek = $rootScope.weeks.slice(-2)[0];
 
+  $rootScope.$watch('activeWeek', function (activeWeek) {
+    activeWeek.projects = week.getProjects(activeWeek.yearWeek);
+    activeWeek.users = week.getUsers(activeWeek.yearWeek);
+  }, true);
 });

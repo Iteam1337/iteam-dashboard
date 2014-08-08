@@ -24,10 +24,6 @@ describe('ProjectCtrl', function () {
   });
 
   describe('#ctor', function () {
-    it('gets the projects for the week', function () {
-      expect(week.getProjects).calledOnce
-        .calledWith('201432');
-    });
     xit('it needs more tests');
   });
 });
