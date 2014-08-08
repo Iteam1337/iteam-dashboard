@@ -9,12 +9,11 @@ angular.module('iteam-dashboard').directive('week', function (project, week, use
     restrict: 'E',
     replace: true,
     scope: {
-      //projects: '=',
-      yearweek: '=',
+      projects: '=',
       user: '='
     },
     templateUrl: 'directive/week/week.html',
-    controller: function ($scope, user) {
+    controller: function ($rootScope, $scope, user) {
 
       $scope.setOffsetAndScale = function (projects) {
         $scope.scale = ($scope.height - 50) / (projects.reduce(function (max, hour){
@@ -68,30 +67,20 @@ angular.module('iteam-dashboard').directive('week', function (project, week, use
         } 
         return summary;
       };
+
+      $rootScope.$on('shotsFired', function (evenet, projects) {
+        if(!projects) {
+          return;
+        }
+        $scope.userProjects = $scope.setOffsetAndScale(projects);
+        $scope.summary = $scope.generateSummary(projects);
+
+      });
     },
     link: function (scope, element, attrs, fn) {
-
       scope.height = parseFloat(attrs.height, 10);
       scope.width = parseFloat(attrs.width, 10);
       scope.top = 100;
-
-
-
-      scope.$watch('yearweek.yearWeek', function (yearWeek) {
-        // if (!projects) {
-        //   return;
-        // }
-        if(!yearWeek) {
-          return;
-        }
-
-       week.getProjectsForUser(scope.yearweek.yearWeek, scope.user)
-          .then(function (projects) {
-             scope.userProjects = scope.setOffsetAndScale(projects);
-            scope.summary = scope.generateSummary(projects);
-          });
-       
-      });
     }
   };
 });
