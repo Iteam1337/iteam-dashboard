@@ -1,19 +1,18 @@
 <ion-nav-bar></ion-nav-bar>
-<ion-view title="Select project">
+<ion-view title="V{{activeWeek.week}}">
   <ion-content>
     <ion-slide-box on-slide-changed="weekSelect($index)" active-slide="activeSlider">
       <ion-slide ng-repeat="yearWeek in weeks">
         <div class="box">
-          <h2>vecka {{yearWeek.week}}</h2>
           <ion-list class="card">
-              <a ng-repeat="project in yearWeek.projects" class="item item-icon-left item-icon-right" ui-sref="projectDetails({projectId: project.projectId})">
-                <i class="icon ion-person"></i>
-                {{project.name.toUpperCase()}}
-                <i class="icon ion-ios7-arrow-forward"></i>
-              </a>
+            <a ng-repeat="project in yearWeek.projects" class="item item-icon-left item-icon-right" ui-sref="projectDetails({projectId: project.projectId})">
+              <i class="icon ion-briefcase"></i>
+              {{project.name.toUpperCase()}}
+              <i class="icon ion-ios7-arrow-forward"></i>
+            </a>
           </ion-list>
         </div>
-      </ion-slide> 
+      </ion-list-slide>
     </ion-slide-box>
   </ion-content>
-</ion-view>   
+</ion-view>

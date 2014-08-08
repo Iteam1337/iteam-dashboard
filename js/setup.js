@@ -47,14 +47,18 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
 
 	/* Add New Routes Above */
 
-  
+
   // For any unmatched url, redirect to /
  $urlRouterProvider.otherwise('/personal');
 
 });
 
-angular.module('iteam-dashboard').run(function ($rootScope) {
+angular.module('iteam-dashboard').run(function ($rootScope, week, $state) {
   'use strict';
+
+  $rootScope.goTo = function (state) {
+    $state.go(state);
+  };
 
   $rootScope.safeApply = function (fn) {
     var phase = $rootScope.$$phase;
@@ -80,6 +84,14 @@ angular.module('iteam-dashboard').run(function ($rootScope) {
     return week;
   });
 
+  $rootScope.weekSelect = function (index) {
+    $rootScope.activeWeek = $rootScope.weeks[index];
+  };
+
   $rootScope.activeWeek = $rootScope.weeks.slice(-2)[0];
 
+  $rootScope.$watch('activeWeek', function (activeWeek) {
+    activeWeek.projects = week.getProjects(activeWeek.yearWeek);
+    activeWeek.users = week.getUsers(activeWeek.yearWeek);
+  }, true);
 });

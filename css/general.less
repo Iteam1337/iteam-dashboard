@@ -1,0 +1,38 @@
+body {
+  color: #25263B;
+}
+
+.item,
+ion-content {
+  background: #F7F7F7;
+}
+
+ion-content {
+  .slider-slides {
+    min-height: ~'calc(100vh - 111px)';
+  }
+  .slider {
+    padding-bottom: 20px;
+    .slider-pager {
+      bottom: 30px;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.item {
+  position: relative;
+  border-color: transparent;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  &:before {
+    width: ~'calc(100% - 50px)';
+    height: 1px;
+    background: #DDD;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 50px;
+    bottom: 0;
+  }
+}

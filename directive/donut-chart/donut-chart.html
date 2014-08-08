@@ -1,0 +1,31 @@
+<div class="chart pie">
+  <nvd3-pie-chart
+    data="data"
+    class="bottom"
+    x="get('user')"
+    y="get('planned')"
+    donut="true"
+    donutRatio="1.2"
+    height="300"
+    width="300"
+    color="color('planned')">
+    <svg width="350" height="350"></svg>
+  </nvd3-pie-chart>
+
+  <nvd3-pie-chart
+    data="data"
+    x="get('user')"
+    y="get('reported')"
+    donut="true"
+    donutRatio="1"
+    height="300"
+    width="300"
+    style="z-index:1;"
+    color="color('reported', 15)">
+    <svg width="350" height="350"></svg>
+  </nvd3-pie-chart>
+
+  <div class="summary" data-ng-show="summary">
+    <strong>{{summary.planned}}</strong> / {{summary.reported}}
+  </div>
+</div>
