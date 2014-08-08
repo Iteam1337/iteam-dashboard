@@ -1,4 +1,4 @@
-angular.module('iteam-dashboard', ['ngResource', 'ionic', 'nvd3ChartDirectives', 'angular-md5']);
+angular.module('iteam-dashboard', ['ngResource', 'ionic', 'nvd3ChartDirectives']);
 
 angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterProvider) {
   'use strict';

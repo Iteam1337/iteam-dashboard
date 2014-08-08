@@ -1,4 +1,4 @@
-angular.module('iteam-dashboard').directive('week', function (project, week, user, avatar) {
+angular.module('iteam-dashboard').directive('week', function (project, week, user) {
   'use strict';
 
   return {
@@ -9,9 +9,6 @@ angular.module('iteam-dashboard').directive('week', function (project, week, use
       user: '='
     },
     templateUrl: 'directive/week/week.html',
-    controller: function ($scope, md5) {
-      $scope.avatar = avatar.generate($scope.user);
-    },
     link: function (scope, element, attrs, fn) {
 
       scope.height = parseFloat(attrs.height, 10);
