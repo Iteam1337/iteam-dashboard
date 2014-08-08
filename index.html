@@ -69,12 +69,12 @@
     -->
     <ion-tabs class="tabs-icon-top tabs-default">
 
-      <ion-tab title="Personal" icon="icon ion-person" href="#/personal">
+      <ion-tab title="Personal" icon="icon ion-person" ng-click="goTo('personal')">
         <ion-nav-view name="personal-tab"></ion-nav-view>
       </ion-tab>
 
 
-      <ion-tab title="Project" icon="icon ion-heart" href="#/project">
+      <ion-tab title="Project" icon="icon ion-heart" ng-click="goTo('project')">
         <ion-nav-view name="project-tab"></ion-nav-view>
       </ion-tab>
 

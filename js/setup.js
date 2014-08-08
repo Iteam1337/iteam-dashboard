@@ -53,8 +53,12 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
 
 });
 
-angular.module('iteam-dashboard').run(function ($rootScope, week) {
+angular.module('iteam-dashboard').run(function ($rootScope, week, $state) {
   'use strict';
+
+  $rootScope.goTo = function (state) {
+    $state.go(state);
+  };
 
   $rootScope.safeApply = function (fn) {
     var phase = $rootScope.$$phase;
