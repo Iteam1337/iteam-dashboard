@@ -36,3 +36,29 @@ ion-content {
     bottom: 0;
   }
 }
+
+.listed {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-content: center;
+  .listed-name {
+    flex-grow: 1;
+    order: 0;
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .listed-planned,
+  .listed-reported {
+    flex-grow: 0;
+    width: 30px;
+    margin: 0 20px;
+    text-align: right;
+  }
+  .listed-planned {
+    font-weight: bold;
+  }
+
+}

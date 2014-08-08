@@ -1,0 +1,25 @@
+.project {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-content: center;
+  .project-name {
+    flex-grow: 1;
+    order: 0;
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .project-planned,
+  .project-reported {
+    flex-grow: 0;
+    width: 30px;
+    margin: 0 20px;
+    text-align: right;
+  }
+  .project-planned {
+    font-weight: bold;
+  }
+
+}
