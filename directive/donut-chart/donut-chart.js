@@ -5,7 +5,8 @@ angular.module('iteam-dashboard').directive('donutChart', function () {
     restrict: 'E',
     replace: true,
     scope: {
-      users: '='
+      users: '=',
+      summary: '='
     },
     templateUrl: 'directive/donut-chart/donut-chart.html',
     controller: function ($scope, colors) {

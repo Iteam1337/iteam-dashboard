@@ -6,24 +6,22 @@
       <ion-slide ng-repeat="yearWeek in weeks">
 
         <div class="box">
-          <donut-chart users="yearWeek.filteredUsers"></donut-chart>
+          <donut-chart users="yearWeek.filteredUsers" summary="project.summary"></donut-chart>
         </div>
-
-
 
         <div class="box">
           <ion-list class="card center">
-            <a data-ng-repeat="(user, hours) in yearWeek.filteredUsers" class="item item-icon-left item-icon-right" data-ui-sref="personalDetails({user:user})">
+            <a data-ng-repeat="(user, hours) in yearWeek.filteredUsers" class="item item-icon-left item-icon-right user-summary" data-ui-sref="personalDetails({user:user})">
               <badge user="user"></badge>
-              <strong>{{user}}</strong>
-              {{!!hours.planned && 'Planned: ' + hours.planned || '' }} {{ !!hours.reported && 'Reported: ' + hours.reported || '' }}
-              <!-- <i class="icon ion-ios7-arrow-forward"></i> -->
+              <strong class="user">{{user.toUpperCase()}}</strong>
+              Planned: <strong>{{hours.planned}}</strong>
+              Reported: <strong>{{hours.reported}}</strong>
             </a>
           </ion-list>
         </div>
+
       </ion-slide>
     </ion-slide-box>
 
   </ion-content>
 </ion-view>
-
