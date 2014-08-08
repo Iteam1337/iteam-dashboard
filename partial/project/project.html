@@ -5,9 +5,11 @@
       <ion-slide ng-repeat="yearWeek in weeks">
         <div class="box">
           <ion-list class="card">
-            <a ng-repeat="project in yearWeek.projects" class="item item-icon-left item-icon-right" ui-sref="projectDetails({projectId: project.projectId})">
+            <a ng-repeat="project in yearWeek.projects | sortByDepartmentName" class="item item-icon-left item-icon-right listed" ui-sref="projectDetails({projectId: project.projectId})">
               <i class="icon ion-briefcase"></i>
-              {{project.name.toUpperCase()}}
+              <span class="listed-name">{{project.name.toUpperCase()}}</span>
+              <span class="listed-planned">{{project.summary.planned}}</span>
+              <span class="listed-reported">{{project.summary.reported}}</span>
               <i class="icon ion-ios7-arrow-forward"></i>
             </a>
           </ion-list>
