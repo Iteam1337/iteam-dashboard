@@ -39,10 +39,6 @@ describe('week', function () {
         expect(result).to.equal('19701');
         clock.restore();
       });
-      it('returns the year week for the date provided', function () {
-        var result = week.getYearWeek(946681200000);
-        expect(result).to.equal('200032');
-      });
     });
 
     describe('#getProjects', function () {
