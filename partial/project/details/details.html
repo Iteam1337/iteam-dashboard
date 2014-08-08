@@ -20,20 +20,7 @@
     </ion-slide-box>
  -->
 
-    <ion-slide-box active-slide="activeSlide" on-slide-changed="slideHasChanged($index)">
-      <ion-slide>
-        <a ng-repeat="object in data_1" class="item item-icon-left item-icon-right" ui-sref="tab.user({user:object.user})" data-ng-show="!!object.reported && !!object.planned">
-          <i class="icon">
-            <img data-ng-src="{{avatar(object.user)}}" />
-          </i>
-          {{object.user}}
-          {{!!object.planned && 'Planned: ' + object.planned || '' }} {{ !!object.reported && 'Reported: ' + object.reported || '' }}
-          <i class="icon ion-ios7-arrow-forward"></i>
-        </a>
-      </ion-slide>
-    </ion-slide-box>
-
-    <div class="box">
+     <div class="box">
       <div class="chart pie">
         <nvd3-pie-chart
           data="data_1"
@@ -62,6 +49,22 @@
         </nvd3-pie-chart>
       </div>
     </div>
+
+    <!-- <ion-slide-box active-slide="activeSlide" on-slide-changed="slideHasChanged($index)">
+      <ion-slide> -->
+        <a data-ng-repeat="object in data_1" class="item item-icon-left item-icon-right" data-ui-sref="tab.user({user:object.user})" data-ng-show="!!object.reported && !!object.planned">
+          <!--
+            <progress-bar class="progress-top" key="planned" max="max" ng-model="object"></progress-bar>
+            <progress-bar class="progress-bottom" key="reported" max="max" ng-model="object" shade="15"></progress-bar>
+          -->
+          <i class="icon ion-person" style="color: {{userColor(object.user)}}"></i>
+          <strong>{{object.user}}</strong>
+          {{!!object.planned && 'Planned: ' + object.planned || '' }} {{ !!object.reported && 'Reported: ' + object.reported || '' }}
+          <i class="icon ion-ios7-arrow-forward"></i>
+        </a>
+      <!-- </ion-slide>
+    </ion-slide-box> -->
+
   </ion-content>
 </ion-view>
 

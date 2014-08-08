@@ -1,4 +1,4 @@
-angular.module('iteam-dashboard').controller('ProjectDetailsCtrl', function ($scope, $stateParams, week, colors, avatar) {
+angular.module('iteam-dashboard').controller('ProjectDetailsCtrl', function ($scope, $stateParams, week, colors) {
   'use strict';
 
   $scope.activeSlide = $scope.activeWeek.index;
@@ -23,6 +23,13 @@ angular.module('iteam-dashboard').controller('ProjectDetailsCtrl', function ($sc
       'reported': randomNumber()
     };
 
+    if (person.planned > $scope.max) {
+      $scope.max = person.planned;
+    }
+    if (person.reported > $scope.max) {
+      $scope.max = person.reported;
+    }
+
     var fill = person.planned === person.reported ? false : {};
     if (!fill) {
       return [person];
@@ -42,8 +49,7 @@ angular.module('iteam-dashboard').controller('ProjectDetailsCtrl', function ($sc
 
   function generate() {
     var array = [];
-    // var max = randomNumber(numberOfUsers);
-    var max = numberOfUsers;
+    var max = randomNumber(numberOfUsers);
     for (var i = 0, personal; i < max; i++) {
       personal = new Personal();
       for (var j = 0; j < personal.length; j++) {
@@ -57,10 +63,14 @@ angular.module('iteam-dashboard').controller('ProjectDetailsCtrl', function ($sc
   var users = ['abo', 'acr', 'cln', 'dpn', 'jgn', 'jok', 'mln', 'ram', 'rln'];
   var numberOfUsers = users.length;
 
+  $scope.max = 0;
   $scope.data_1 = generate();
 
-  $scope.avatar = function (user) {
-    return avatar.generate(user, { size: 40, team: true });
+  $scope.userColor = function (user) {
+    if (!user) {
+      return;
+    }
+    return colors.getColor(user);
   };
 
   $scope.color = function (key, darker) {
@@ -68,7 +78,7 @@ angular.module('iteam-dashboard').controller('ProjectDetailsCtrl', function ($sc
     return function (d, index) {
       var fill = d.data[key] !== undefined;
       if (fill) {
-        return 'fff';
+        return 'transparent';
       }
       var user = d.data.user || '';
       var color = colors.getColor(user);

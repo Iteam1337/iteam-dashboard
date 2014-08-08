@@ -1,7 +1,6 @@
 angular.module('iteam-dashboard').service('colors', function () {
   'use strict';
 
-  var i = 0;
   function Colors () {
     this.users =  ['abo',     'acr',     'cln',     'dpn',     'jgn',     'jok',     'mln',     'ram',     'rln'];
     this.colors = ['#FF3B30', '#FF9500', '#FFCC00', '#8E8E93', '#34AADC', '#007AFF', '#5856D6', '#E94BC0', '#4CD964'];
