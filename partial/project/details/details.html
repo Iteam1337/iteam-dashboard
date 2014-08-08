@@ -7,45 +7,24 @@
 -->
 <ion-view title="{{project}}" class="project-details">
   <ion-content>
-    <ion-slide-box active-slide="activeSlide" on-slide-changed="slideHasChanged($index)">
+    <ion-slide-box on-slide-changed="weekSelect($index)" active-slide="activeSlider">
       <ion-slide ng-repeat="yearWeek in weeks">
-        <div class="box">
-          <div class="chart pie">
-            <nvd3-pie-chart
-              data="data_1"
-              class="bottom"
-              x="get('user')"
-              y="get('planned')"
-              donut="true"
-              donutRatio="1.2"
-              height="300"
-              width="300"
-              color="color('planned')">
-              <svg width="350" height="350"></svg>
-            </nvd3-pie-chart>
 
-            <nvd3-pie-chart
-              data="data_1"
-              x="get('user')"
-              y="get('reported')"
-              donut="true"
-              donutRatio="1"
-              height="300"
-              width="300"
-              style="z-index:1;"
-              color="color('reported', 15)">
-              <svg width="350" height="350"></svg>
-            </nvd3-pie-chart>
-          </div>
+        <div class="box">
+          <donut-chart users="yearWeek.filteredUsers"></donut-chart>
         </div>
 
-
-        <a data-ng-repeat="object in data_1" class="item item-icon-left item-icon-right" data-ui-sref="tab.user({user:object.user})" data-ng-show="!!object.reported && !!object.planned">
-          <badge user="object.user"></badge>
-          <strong>{{object.user}}</strong>
-          {{!!object.planned && 'Planned: ' + object.planned || '' }} {{ !!object.reported && 'Reported: ' + object.reported || '' }}
-          <!-- <i class="icon ion-ios7-arrow-forward"></i> -->
-        </a>
+        <div class="box">
+          <ion-list class="card center">
+            <h2>vecka {{yearWeek.week}}</h2>
+            <a data-ng-repeat="(user, hours) in yearWeek.filteredUsers" class="item item-icon-left item-icon-right" data-ui-sref="personalDetails({user:user})">
+              <badge user="user"></badge>
+              <strong>{{user}}</strong>
+              {{!!hours.planned && 'Planned: ' + hours.planned || '' }} {{ !!hours.reported && 'Reported: ' + hours.reported || '' }}
+              <!-- <i class="icon ion-ios7-arrow-forward"></i> -->
+            </a>
+          </ion-list>
+        </div>
       </ion-slide>
     </ion-slide-box>
 

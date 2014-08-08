@@ -14,7 +14,6 @@ angular.module('iteam-dashboard').directive('badge', function () {
           return;
         }
         var color = colors.getColor($scope.user);
-        // return 'color:' + color + ';border-color:' + color;
         return 'background-color:' + color;
       };
     }

@@ -27,6 +27,7 @@ angular.module('iteam-dashboard').service('project', function () {
           var user = users[plannedUser.EmployeeShortName.toLowerCase()] = users[plannedUser.EmployeeShortName.toLowerCase()] || {};
           Object.keys(plannedUser.PlannedHoursPerRole).forEach(function (type) {
             user.planned = +parseFloat(+(user.planned || 0) + plannedUser.PlannedHoursPerRole[type]).toFixed(2);
+            user.reported = +parseFloat(+(user.reported || 0) + (user.reported || 0)).toFixed(2);
             user.types = user.types || {};
             user.types[type] = plannedUser.PlannedHoursPerRole[type];
           });
@@ -61,6 +62,7 @@ angular.module('iteam-dashboard').service('project', function () {
 
         project.users = project.users || {};
         var user = project.users[hour.EmployeeShortName.toLowerCase()] = project.users[hour.EmployeeShortName.toLowerCase()] || {};
+        user.planned = (user.planned || 0);
         user.reported = +parseFloat(parseFloat(user.reported || 0) + hour.NumberOfHours).toFixed(2);
         /*user.reported.details = user.reported.details || {};
         user.reported.details[hour.ProjectId] = (user.reported.details[hour.ProjectId] || 0) + hour.NumberOfHours;
