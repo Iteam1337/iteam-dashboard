@@ -79,7 +79,7 @@ angular.module('iteam-dashboard').service('week', function($resource, $q, projec
       var weekHours = getWeekHours(yearWeek);
       weekHours.$promise.then(function () {
         var projects = project.getProjects(weekHours);
-        deferred.resolve(projects[projectId].users);
+        deferred.resolve(projects[projectId] && projects[projectId].users || []);
       });
       return deferred.promise;
     }

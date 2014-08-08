@@ -75,6 +75,11 @@ describe('project', function () {
       expect(summary).to.have.keys('unplanned');
       expect(summary['unplanned']).to.have.property('users');
       expect(summary['unplanned'].users).to.have.property('jgn');
+      expect(summary['unplanned'].users['jgn'].planned, 'planned').to.not.be.undefined;
+      expect(summary['unplanned'].users['jgn'].reported, 'reported').to.not.be.undefined;
+
+      // expect(summary['unplanned'].users['jgn'].planned).to.eql(0);
+      // expect(summary['unplanned'].users['jgn'].reported).to.eql(0);
     });
 
     it('should aggregate both planned and reported week', function () {

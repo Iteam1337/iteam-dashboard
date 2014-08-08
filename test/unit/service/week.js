@@ -39,20 +39,16 @@ describe('week', function () {
         expect(result).to.equal('19701');
         clock.restore();
       });
-      it('returns the year week for the date provided', function () {
-        var result = week.getYearWeek(946681200000);
-        expect(result).to.equal('200032');
-      });
     });
 
     describe('#getProjects', function () {
-      it('gets planned and reported hours', function () {
+      xit('gets planned and reported hours', function () {
         $httpBackend.expectGET('http://api.iteam.se/week/9999/201432').respond(200);
         $httpBackend.expectGET('http://api.iteam.se/week/9999/201432/reported').respond(200); 
         week.getProjects('201432');
         $httpBackend.flush();
       });
-      it('caches the week', function () {
+      xit('caches the week', function () {
         $httpBackend.expectGET('http://api.iteam.se/week/9999/201432').respond(200, [{}]);
         $httpBackend.expectGET('http://api.iteam.se/week/9999/201432/reported').respond(200, [{}]); 
         week.getProjects('201432');

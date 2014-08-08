@@ -1,4 +1,6 @@
+<!--
 <ion-nav-bar></ion-nav-bar>
+-->
 <ion-view title="Select user">
   <ion-content>
 
@@ -8,25 +10,11 @@
           <h2>vecka {{yearWeek.week}}</h2>
           <ion-list class="card">
             <a ng-repeat="(user, summary) in yearWeek.users" class="item item-icon-left item-icon-right" ui-sref="personalDetails({ user:user })">
-              <i class="icon ion-person"></i>
+              <badge user="user"></badge>
               {{user.toUpperCase()}}
               <i class="icon ion-ios7-arrow-forward"></i>
             </a>
           </ion-list>
-        </div>
-        <div class="box">
-          <h2>Projekt</h2>
-          <nvd3-pie-chart
-              data="exampleData"
-              id="exampleId"
-              showLabels="true"
-              x="xFunction()"
-              y="yFunction()"
-              donut="true"
-              donutRatio=".5"
-              donutLabelsOutside="true">
-            <svg height="200"></svg>
-          </nvd3-pie-chart>
         </div>
       </ion-slide>
     </ion-slide-box>

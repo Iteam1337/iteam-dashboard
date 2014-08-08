@@ -1,25 +1,24 @@
 <div width="640" height="600" class="list card">
   <div class="item item-avatar">
-    <img src="mcfly.jpg">
+    <img data-ng-src="{{avatar}}" />
     <h2>{{user}}</h2>
     <p>{{week}}</p>
   </div>
   <div class="item item-body">
-    <svg class="full-image" height="500">  
-      <line ng-repeat="up in userProjects" 
+    <svg class="full-image" height="700">
+      <line ng-repeat="up in userProjects"
         x1="30" x2="163" y1="{{ up.y1 + up.offset }}" y2="{{ up.y2 + up.offset }}" style="stroke:{{up.color}};stroke-width:6"></line>
 
-      <text ng-repeat="up in userProjects" x="30" y="{{ up.y1 + up.offset }}" text-anchor="end">{{up.planned}}h</text>      
-      <text ng-repeat="up in userProjects" x="173" y="{{ up.y2 + up.offset }}"> {{up.reported}}h {{up.project}}</text>      
+      <text ng-repeat="up in userProjects" x="30" y="{{ up.y1 + up.offset }}" text-anchor="end">{{up.planned}}h</text>
+      <text ng-repeat="up in userProjects" x="173" y="{{ up.y2 + up.offset }}"> {{up.reported}}h {{up.project}}</text>
     </svg>
-    <p>
-      {{summary.text}}
-      <ul>
-        <li class="col" ng-repeat="(department, name) in summary.departments">
-          {{name}} {{department.reported}}h/{{department.planned}}h
-        </li>
-      </ul>
-    </p>
+
+    <p>{{summary.text}}</p>
+    <ul>
+      <li class="col" ng-repeat="(department, name) in summary.departments">
+        {{name}} {{department.reported}}h/{{department.planned}}h
+      </li>
+    </ul>
 
   </div>
 
