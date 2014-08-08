@@ -89,6 +89,7 @@ angular.module('iteam-dashboard').service('project', function () {
       }).forEach(function (project) {
         project.color = colorSet[(parseInt(project.projectId,10)) % colorSet.length] || 'rgba(0,0,0,0.2)';
       });
+      // console.log(projects);
       return projects;
     },
     getWeekHoursSummary: function (weekHours) {
@@ -101,6 +102,7 @@ angular.module('iteam-dashboard').service('project', function () {
           userProjects.push({
             user: userName,
             project: project.name,
+            projectId: projectId,
             color: project.color, //project.department && ((project.department === 'Iteam' && 'red') || (project.department.indexOf('Dev') >= 0 && 'green')) || 'blue',
             department: project.department,
             planned: user.planned || 0,
