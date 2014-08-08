@@ -4,9 +4,7 @@ angular.module('iteam-dashboard').controller('ProjectDetailsCtrl', function ($sc
     week.getUsersForProject($scope.activeWeek.yearWeek, $stateParams.projectId)
       .then(function (filtered) {
         $scope.activeWeek.filteredUsers = filtered;
-        if (!$scope.project) {
-          $scope.project = $scope.activeWeek.projects[$stateParams.projectId];
-        }
+        $scope.project = $scope.activeWeek.projects[$stateParams.projectId];
       });
   }
 
@@ -20,8 +18,6 @@ angular.module('iteam-dashboard').controller('ProjectDetailsCtrl', function ($sc
   $scope.$watch('activeWeek', function (activeWeek) {
     bindUsers();
   }, true);
-
-  $scope.project = null;
 
   bindUsers();
 
