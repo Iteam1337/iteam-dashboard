@@ -8,10 +8,6 @@ angular.module('iteam-dashboard').controller('ProjectDetailsCtrl', function ($sc
       });
   }
 
-  $scope.weekSelect = function (index) {
-    $scope.activeWeek = $scope.weeks[index];
-  };
-
   // TOOD: parse from stateparams
   $scope.activeSlider = $scope.weeks.indexOf($scope.activeWeek);
 
