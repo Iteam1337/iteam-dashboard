@@ -26,6 +26,6 @@
   </nvd3-pie-chart>
 
   <div class="summary" data-ng-show="summary">
-    <strong>{{summary.planned}}h</strong> / {{summary.reported}}h
+    <strong>{{summary.planned | number:0}}h</strong> / {{summary.reported | number:0}}h
   </div>
 </div>

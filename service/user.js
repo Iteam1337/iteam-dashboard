@@ -22,10 +22,43 @@ angular.module('iteam-dashboard').service('user', function (project) {
         return users;
       }, {});
     },
-    getPersonalSummary: function (weekHours, userName) {
+    getPersonalSummary: function (projects, userName) {
+
+      var projectCopy = []
+        .concat(projects)
+        .reduce(function (object, project) {
+          var key = project.planned;
+          if (object[key]) {
+            object[key].push(project);
+          } else {
+            object[key] = [project];
+          }
+          return object;
+        }, {});
+
+      var sortedProjects = Object.keys(projectCopy).sort(function (a, b) {
+        return b - a;
+      }).map(function (planned) {
+        return projectCopy[planned];
+      });
+
+      if (!sortedProjects || !sortedProjects[0]) {
+        return;
+      }
+
       // TODO: do it
-      //
-      return userName + ' fick en stor sudd igen på projektet X, förutom det finns det mest småduttar på fyra mindre interna projekt.';
+      var string = '{userName} fick störst sudd på "{largest}"';
+      var second = ', därefter finns det tid för "{second}"';
+      string = string
+        .replace('{userName}', userName)
+        .replace('{largest}', sortedProjects[0][0].project);
+
+      if (!!sortedProjects[1] && !!sortedProjects[1][0]) {
+        string += second.replace('{second}', sortedProjects[1][0].project);
+      }
+
+      return string;
+      // return userName + ' fick en stor sudd igen på projektet X, förutom det finns det mest småduttar på fyra mindre interna projekt.';
     }
   };
 

@@ -1,11 +1,11 @@
 <ion-nav-bar></ion-nav-bar>
-<ion-view title="V{{activeWeek.week}}">
+<ion-view title="V{{activeWeek.week}} {{user.toUpperCase()}}">
   <ion-content>
     <ion-slide-box ng-show="user" on-slide-changed="weekSelect($index)" active-slide="activeSlider">
 
       <ion-slide ng-repeat="yearWeek in weeks">
         <div class="box">
-          <week projects="activeWeek.filteredProjects" user="user"></week>
+          <week projects="activeWeek.filteredProjects" user="user" ng-hide="!activeWeek.filteredProjects" height="300"></week>
         </div>
 
          <div class="box">
@@ -19,7 +19,7 @@
             </a>
           </ion-list>
         </div>
-        
+
       </ion-slide>
     </ion-slide-box>
   </ion-content>

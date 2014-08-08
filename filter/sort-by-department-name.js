@@ -24,6 +24,10 @@ angular.module('iteam-dashboard').filter('sortByDepartmentName', function () {
   }
 
   return function (array) {
+    if (!array) {
+      return [];
+    }
+
     if (array instanceof Array === false) {
       array = toArray(array);
     }
