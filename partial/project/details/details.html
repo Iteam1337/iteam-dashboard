@@ -1,11 +1,6 @@
-<!--
-<ion-nav-bar>
-  <ion-nav-back-button class="button-clear">
-    <i class="ion-arrow-left-c"></i> Back
-  </ion-nav-back-button>
-</ion-nav-bar>
--->
-<ion-view title="{{project}}" class="project-details">
+<ion-nav-bar></ion-nav-bar>
+
+<ion-view title="V{{activeWeek.week}} {{project.name}}" class="project-details">
   <ion-content>
     <ion-slide-box on-slide-changed="weekSelect($index)" active-slide="activeSlider">
       <ion-slide ng-repeat="yearWeek in weeks">
@@ -14,9 +9,10 @@
           <donut-chart users="yearWeek.filteredUsers"></donut-chart>
         </div>
 
+
+
         <div class="box">
           <ion-list class="card center">
-            <h2>vecka {{yearWeek.week}}</h2>
             <a data-ng-repeat="(user, hours) in yearWeek.filteredUsers" class="item item-icon-left item-icon-right" data-ui-sref="personalDetails({user:user})">
               <badge user="user"></badge>
               <strong>{{user}}</strong>

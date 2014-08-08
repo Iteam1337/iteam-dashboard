@@ -1,11 +1,5 @@
-<!--
-<ion-nav-bar>
-  <ion-nav-back-button class="button-clear">
-    <i class="ion-arrow-left-c"></i> Back
-  </ion-nav-back-button>
-</ion-nav-bar>
--->
-<ion-view title="{{user}}">
+<ion-nav-bar></ion-nav-bar>
+<ion-view title="V{{activeWeek.week}}">
   <ion-content>
     <ion-slide-box ng-show="user" on-slide-changed="weekSelect($index)" active-slide="activeSlide">
 

@@ -15,7 +15,6 @@ angular.module('iteam-dashboard').directive('donutChart', function () {
           'planned': 'randomNumber()',
           'reported': 'randomNumber()'
         };
-
         var fill = person.planned === person.reported ? false : {};
         if (!fill) {
           return [person];
@@ -29,7 +28,6 @@ angular.module('iteam-dashboard').directive('donutChart', function () {
             'reported_fill': person.planned - person.reported
           };
         }
-
         return [person, fill];
       }
 
@@ -62,18 +60,13 @@ angular.module('iteam-dashboard').directive('donutChart', function () {
         if (!users) {
           return;
         }
-
         $scope.data = Object.keys(users).map(function (key, index) {
-
           var person = users[key];
-
           var user = {
             'user': key,
             'planned': person.planned,
             'reported': person.reported
           };
-
-
           var fill = user.planned === user.reported ? false : {};
           if (!fill) {
             return [user];
@@ -87,14 +80,11 @@ angular.module('iteam-dashboard').directive('donutChart', function () {
               'reported_fill': user.planned - user.reported
             };
           }
-
           return [user, fill];
         }).reduce(function (array, user) {
           array = array.concat(user);
           return array;
         }, []);
-
-        console.log($scope.data);
       });
     }
   };
