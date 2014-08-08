@@ -6,6 +6,8 @@ angular.module('iteam-dashboard').controller('ProjectDetailsCtrl', function ($sc
   week.getUsersForProject($scope.activeWeek.yearWeek, $stateParams.projectId)
     .then(function (filtered) {
       $scope.users = filtered;
+
+      console.log($scope.users);
     });
 
   function randomNumber(max) {
@@ -49,7 +51,8 @@ angular.module('iteam-dashboard').controller('ProjectDetailsCtrl', function ($sc
 
   function generate() {
     var array = [];
-    var max = randomNumber(numberOfUsers);
+    // var max = randomNumber(numberOfUsers);
+    var max = numberOfUsers;
     for (var i = 0, personal; i < max; i++) {
       personal = new Personal();
       for (var j = 0; j < personal.length; j++) {
@@ -66,14 +69,7 @@ angular.module('iteam-dashboard').controller('ProjectDetailsCtrl', function ($sc
   $scope.max = 0;
   $scope.data_1 = generate();
 
-  $scope.userColor = function (user) {
-    if (!user) {
-      return;
-    }
-    return colors.getColor(user);
-  };
-
-  $scope.color = function (key, darker) {
+  $scope.color = function (key, dodge) {
     key = key + '_fill';
     return function (d, index) {
       var fill = d.data[key] !== undefined;
@@ -82,7 +78,7 @@ angular.module('iteam-dashboard').controller('ProjectDetailsCtrl', function ($sc
       }
       var user = d.data.user || '';
       var color = colors.getColor(user);
-      return darker ? colors.shade(color, 10) : color;
+      return dodge ? colors.shade(color, dodge) : color;
     };
   };
 

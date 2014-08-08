@@ -1,8 +1,13 @@
 body {
   color: #25263B;
 }
+
+.item,
 ion-content {
   background: #F7F7F7;
+}
+
+ion-content {
   .slider {
     min-height: ~'calc(100vh - 50px)';
     padding-bottom: 40px;
@@ -13,27 +18,19 @@ ion-content {
   }
 }
 
-progress-bar {
-  position: absolute;
-  display: block;
-  content: ' ';
-  height: 50%;
-  left: 0;
-  z-index: -1;
-  opacity: 0.2;
-  &.progress-top {
-    top: 0;
-  }
-  &.progress-bottom {
+.item {
+  position: relative;
+  border-color: transparent;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  &:before {
+    width: ~'calc(100% - 50px)';
+    height: 1px;
+    background: #DDD;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 50px;
     bottom: 0;
-  }
-  &:hover {
-    opacity: 1;
-  }
-}
-
-a:hover {
-  progress-bar {
-    opacity: 1;
   }
 }

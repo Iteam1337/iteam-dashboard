@@ -1,22 +1,14 @@
 .project-details {
-  position: relative;
-
-  nvd3-pie-chart {
-    position: absolute;
-    width: 250px;
-    height: 250px;
-  }
-  svg {
-    position: relative;
-  }
   .chart {
-    position: relative;
-    height: 250px;
-  }
-  .chart,
-  .chart * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    height: 350px;
+    width: 100vw;
+    margin: 0;
+    nvd3-pie-chart {
+      position: absolute;
+      margin: 0 0 0 -175px;
+      width: 350px;
+      left: 50%;
+      display: inline-block;
+    }
   }
 }

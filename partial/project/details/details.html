@@ -7,63 +7,47 @@
 -->
 <ion-view title="{{project}}" class="project-details">
   <ion-content>
-<!--
     <ion-slide-box active-slide="activeSlide" on-slide-changed="slideHasChanged($index)">
-      <ion-slide ng-repeat="yerWeek in weeks">
-        <a ng-repeat="(user, hours) in users" class="item item-icon-left item-icon-right" ui-sref="tab.user({user:user})">
-          <i class="icon ion-person"></i>
-            {{user.toUpperCase()}}
-            Planned: {{hours.planned}} | Reported: {{hours.reported}}
-          <i class="icon ion-ios7-arrow-forward"></i>
+      <ion-slide ng-repeat="yearWeek in weeks">
+        <div class="box">
+          <div class="chart pie">
+            <nvd3-pie-chart
+              data="data_1"
+              class="bottom"
+              x="get('user')"
+              y="get('planned')"
+              donut="true"
+              donutRatio="1.2"
+              height="300"
+              width="300"
+              color="color('planned')">
+              <svg width="350" height="350"></svg>
+            </nvd3-pie-chart>
+
+            <nvd3-pie-chart
+              data="data_1"
+              x="get('user')"
+              y="get('reported')"
+              donut="true"
+              donutRatio="1"
+              height="300"
+              width="300"
+              style="z-index:1;"
+              color="color('reported', 15)">
+              <svg width="350" height="350"></svg>
+            </nvd3-pie-chart>
+          </div>
+        </div>
+
+
+        <a data-ng-repeat="object in data_1" class="item item-icon-left item-icon-right" data-ui-sref="tab.user({user:object.user})" data-ng-show="!!object.reported && !!object.planned">
+          <badge user="object.user"></badge>
+          <strong>{{object.user}}</strong>
+          {{!!object.planned && 'Planned: ' + object.planned || '' }} {{ !!object.reported && 'Reported: ' + object.reported || '' }}
+          <!-- <i class="icon ion-ios7-arrow-forward"></i> -->
         </a>
       </ion-slide>
     </ion-slide-box>
- -->
-
-     <div class="box">
-      <div class="chart pie">
-        <nvd3-pie-chart
-          data="data_1"
-          class="bottom"
-          x="get('user')"
-          y="get('planned')"
-          donut="true"
-          donutRatio="1"
-          height="300"
-          width="300"
-          color="color('planned')">
-          <svg width="300" height="300"></svg>
-        </nvd3-pie-chart>
-
-        <nvd3-pie-chart
-          data="data_1"
-          x="get('user')"
-          y="get('reported')"
-          donut="true"
-          donutRatio=".6"
-          height="300"
-          width="300"
-          style="z-index: 0;"
-          color="color('reported', true)">
-          <svg width="300" height="300"></svg>
-        </nvd3-pie-chart>
-      </div>
-    </div>
-
-    <!-- <ion-slide-box active-slide="activeSlide" on-slide-changed="slideHasChanged($index)">
-      <ion-slide> -->
-        <a data-ng-repeat="object in data_1" class="item item-icon-left item-icon-right" data-ui-sref="tab.user({user:object.user})" data-ng-show="!!object.reported && !!object.planned">
-          <!--
-            <progress-bar class="progress-top" key="planned" max="max" ng-model="object"></progress-bar>
-            <progress-bar class="progress-bottom" key="reported" max="max" ng-model="object" shade="15"></progress-bar>
-          -->
-          <i class="icon ion-person" style="color: {{userColor(object.user)}}"></i>
-          <strong>{{object.user}}</strong>
-          {{!!object.planned && 'Planned: ' + object.planned || '' }} {{ !!object.reported && 'Reported: ' + object.reported || '' }}
-          <i class="icon ion-ios7-arrow-forward"></i>
-        </a>
-      <!-- </ion-slide>
-    </ion-slide-box> -->
 
   </ion-content>
 </ion-view>

@@ -2,8 +2,8 @@ angular.module('iteam-dashboard').service('colors', function () {
   'use strict';
 
   function Colors () {
-    this.users =  ['abo',     'acr',     'cln',     'dpn',     'jgn',     'jok',     'mln',     'ram',     'rln'];
-    this.colors = ['#FF3B30', '#FF9500', '#FFCC00', '#8E8E93', '#34AADC', '#007AFF', '#5856D6', '#E94BC0', '#4CD964'];
+    this.users =  ['abo',     'acr',     'cln',     'dpn',     'jgn',     'jok',  'mln',     'ram',     'rln',     'jbn'];
+    this.colors = ['#4A87EE', '#66CC33', '#FFCC00', '#444444', '#34AADC', '#FAB', '#EF4E3A', '#8A6DE9', '#50DC82', '#F0B840'];
   }
 
   Colors.prototype.getColor = function (user) {
@@ -13,10 +13,10 @@ angular.module('iteam-dashboard').service('colors', function () {
 
   Colors.prototype.shade = function (color, percent) {
     var num = parseInt(color.slice(1), 16);
-    var amt = Math.round(2.55 * percent);
-    var R = (num >> 16) + amt;
-    var G = (num >> 8 & 0x00FF) + amt;
-    var B = (num & 0x0000FF) + amt;
+    var amount = Math.round(2.55 * percent);
+    var R = (num >> 16) + amount;
+    var G = (num >> 8 & 0x00FF) + amount;
+    var B = (num & 0x0000FF) + amount;
     return "#" +
            (0x1000000 +
              (Math.max(Math.min(R, 255), 0)) * 0x10000 +
