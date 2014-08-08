@@ -1,14 +1,19 @@
 angular.module('iteam-dashboard').controller('PersonalCtrl', function ($scope, week) {
   'use strict';
 
-  // TODO: currentWeeks.length - 1 from factory
-  $scope.activeSlider = $scope.activeWeek.index;
 
-  $scope.$watch('activeWeek.yearWeek', function () {
-    $scope.weeks[$scope.activeWeek.index].users = week.getUsers($scope.activeWeek.yearWeek);
-  });
+  $scope.weekSelect = function (index) {
+    $scope.activeWeek = $scope.weeks[index];
+  };
 
-  $scope.weeks[$scope.activeWeek.index].users = week.getUsers($scope.activeWeek.yearWeek);
+  // TOOD: parse from stateparams
+  $scope.activeSlider = $scope.weeks.indexOf($scope.activeWeek);
+
+  $scope.$watch('activeWeek', function (activeWeek) {
+    activeWeek.users = week.getUsers(activeWeek.yearWeek);
+  }, true);
+
+  $scope.activeWeek.users = week.getUsers($scope.activeWeek.yearWeek);
 
   $scope.exampleData = [
     {
