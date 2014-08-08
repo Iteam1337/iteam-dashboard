@@ -7,9 +7,9 @@
   <meta charset="utf-8">
 
   <!-- App LESS -->
-  <link href="css/app.less" type="text/css" rel="stylesheet/less" />
   <link rel="stylesheet" href="bower_components/ionic/css/ionic.css" />
   <link rel="stylesheet" href="bower_components/nvd3/nv.d3.css"/>
+  <link href="css/app.less" type="text/css" rel="stylesheet/less" />
 
 </head>
 <body animation="slide-left-right-ios7" ng-app="iteam-dashboard">
@@ -39,13 +39,16 @@
   <script src="service/week.js"></script>
   <script src="service/project.js"></script>
   <script src="service/user.js"></script>
-  <!-- Add New Service JS Above --> 
+  <script src="service/colors.js"></script>
+  <!-- Add New Service JS Above -->
 
   <!-- Model JS -->
-  <!-- Add New Model JS Above --> 
+  <!-- Add New Model JS Above -->
 
   <!-- Directive JS -->
   <script src="directive/week/week.js"></script>
+  <script src="directive/badge/badge.js"></script>
+  <script src="directive/donut-chart/donut-chart.js"></script>
   <!-- Add New Directive JS Above -->
 
   <!-- Filter JS -->
@@ -59,27 +62,17 @@
   <!-- Add New Partial JS Above -->
 
   <ion-nav-view animation="slide-left-right">
-    <ion-nav-bar></ion-nav-bar>
     <ion-tabs class="tabs-icon-top tabs-default">
 
-      <ion-tab title="Personal" icon="icon ion-person" href="#/personal">
+      <ion-tab title="Personal" icon="icon ion-person" ng-click="goTo('personal')">
         <ion-nav-view name="personal-tab"></ion-nav-view>
       </ion-tab>
 
-
-      <ion-tab title="Project" icon="icon ion-heart" href="#/project">
+      <ion-tab title="Project" icon="icon ion-briefcase" ng-click="goTo('project')">
         <ion-nav-view name="project-tab"></ion-nav-view>
       </ion-tab>
 
-
-      <ion-tab title="About" icon="icon ion-search" href="#/tab/about">
-        <ion-nav-view name="about-tab"></ion-nav-view>
-      </ion-tab>
-
     </ion-tabs>
-
   </ion-nav-view>
-
-  
 </body>
 </html>

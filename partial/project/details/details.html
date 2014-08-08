@@ -1,26 +1,27 @@
-<ion-nav-bar>
-  <ion-nav-back-button class="button-clear">
-    <i class="ion-arrow-left-c"></i> Back
-  </ion-nav-back-button>
-</ion-nav-bar>
-<ion-view title="{{project}}">
+<ion-nav-bar></ion-nav-bar>
+
+<ion-view title="V{{activeWeek.week}} {{project.name}}" class="project-details">
   <ion-content>
     <ion-slide-box on-slide-changed="weekSelect($index)" active-slide="activeSlider">
       <ion-slide ng-repeat="yearWeek in weeks">
+
         <div class="box">
-          <h2>vecka {{yearWeek.week}}</h2>
-          <ion-list class="card">
-            <a ng-repeat="(user, hours) in yearWeek.filteredUsers" class="item item-icon-left item-icon-right" ui-sref="personalDetails({user:user})">
-              <i class="icon ion-person"></i>
-                {{user.toUpperCase()}}
-                Planned: {{hours.planned}} | Reported: {{hours.reported}}
-              <i class="icon ion-ios7-arrow-forward"></i>
-            </a>  
-          </ion-list>  
+          <donut-chart users="yearWeek.filteredUsers" summary="project.summary"></donut-chart>
         </div>
-      </ion-slide>  
+
+        <div class="box">
+          <ion-list class="card center">
+            <a data-ng-repeat="(user, hours) in yearWeek.filteredUsers" class="item item-icon-left item-icon-right user-summary" data-ui-sref="personalDetails({user:user})">
+              <badge user="user"></badge>
+              <strong class="user">{{user.toUpperCase()}}</strong>
+              Planned: <strong>{{hours.planned}}</strong>
+              Reported: <strong>{{hours.reported}}</strong>
+            </a>
+          </ion-list>
+        </div>
+
+      </ion-slide>
     </ion-slide-box>
+
   </ion-content>
 </ion-view>
-
-      
