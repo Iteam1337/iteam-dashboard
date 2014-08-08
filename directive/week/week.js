@@ -1,73 +1,96 @@
 angular.module('iteam-dashboard').directive('week', function (project, week, user) {
   'use strict';
 
+  
+
+  
+
   return {
     restrict: 'E',
     replace: true,
     scope: {
+      //projects: '=',
       yearweek: '=',
       user: '='
     },
     templateUrl: 'directive/week/week.html',
+    controller: function ($scope, user) {
+
+      $scope.setOffsetAndScale = function (projects) {
+        $scope.scale = ($scope.height - 50) / (projects.reduce(function (max, hour){
+          return Math.max(max, hour.planned, hour.reported);
+        },0) || 30);
+
+        projects.forEach(function (hourA, i){
+          // calculate heights
+          hourA.y1 = $scope.height - Math.round(hourA.planned) * $scope.scale;
+          hourA.y2 = $scope.height - Math.round(hourA.reported) * $scope.scale;
+          hourA.offset = 0;
+          hourA.id = i;
+
+          // set offsets
+          projects.forEach(function (hourB){
+            if ((hourA.y1 + hourA.offset === hourB.y1 + hourB.offset || hourA.y2 + hourA.offset === hourB.y2 + hourB.offset) && hourA.id !== hourB.id && !hourA.offset) {
+              hourA.offset = -$scope.scale / 2;
+              hourB.offset = $scope.scale / 2;
+            }
+          });
+        });
+        return projects;
+      };
+
+      $scope.generateSummary = function (projects) {
+        var summary = {
+          text: 'Inga planerade projekt'
+        };
+
+        if (projects.length){
+          summary = {
+            text: user.getPersonalSummary(projects, $scope.user),
+            planned: projects.reduce(function(a,b){
+              return a + b.planned;
+            }, 0),
+            reported: projects.reduce(function(a,b){
+              return a + b.reported;
+            }, 0),
+            biggest: {
+              project: projects[0].project,
+              planned: projects[0].planned,
+              reported: projects[0].reported,
+              departments: projects.reduce(function(a,b){
+                var department = a[b.department] = a[b.department] || {};
+                department.planned = department.planned + b.planned || 0;
+                department.reported = department.reported + b.reported || 0;
+                return a;
+              }, {})
+            }
+          };
+        } 
+        return summary;
+      };
+    },
     link: function (scope, element, attrs, fn) {
 
       scope.height = parseFloat(attrs.height, 10);
       scope.width = parseFloat(attrs.width, 10);
       scope.top = 100;
 
-      scope.$watch('yearweek.yearWeek', function () {
-        week.getProjectsForUser(scope.yearweek.yearWeek, scope.user)
-          .then(function (filteredProjects) {
-            scope.userProjects = filteredProjects;
-            scope.scale = (scope.height - 50) / (scope.userProjects.reduce(function(max, hour){
-              return Math.max(max, hour.planned, hour.reported);
-            },0) || 30);
 
-            // calculate heights
-            scope.userProjects.forEach(function(hour, i ){
-              hour.y1 = scope.height - Math.round(hour.planned) * scope.scale;
-              hour.y2 = scope.height - Math.round(hour.reported) * scope.scale;
-              hour.offset = 0;
-              hour.id = i;
-            });
 
-            scope.userProjects.forEach(function(hourA){
-              scope.userProjects.forEach(function(hourB){
-                if ((hourA.y1 + hourA.offset === hourB.y1 + hourB.offset || hourA.y2 + hourA.offset === hourB.y2 + hourB.offset) && hourA.id !== hourB.id && !hourA.offset) {
-                  hourA.offset = -scope.scale / 2;
-                  hourB.offset = scope.scale / 2;
-                }
-              });
-            });
+      scope.$watch('yearweek.yearWeek', function (yearWeek) {
+        // if (!projects) {
+        //   return;
+        // }
+        if(!yearWeek) {
+          return;
+        }
 
-            if (scope.userProjects.length){
-              scope.summary = {
-                text: user.getPersonalSummary(scope.userProjects, scope.user),
-                planned: scope.userProjects.reduce(function(a,b){
-                  return a + b.planned;
-                }, 0),
-                reported: scope.userProjects.reduce(function(a,b){
-                  return a + b.reported;
-                }, 0),
-                biggest: {
-                  project: scope.userProjects[0].project,
-                  planned: scope.userProjects[0].planned,
-                  reported: scope.userProjects[0].reported,
-                  departments: scope.userProjects.reduce(function(a,b){
-                    var department = a[b.department] = a[b.department] || {};
-                    department.planned = department.planned + b.planned || 0;
-                    department.reported = department.reported + b.reported || 0;
-                    return a;
-                  }, {})
-                }
-              };
-            } else {
-              scope.summary = {
-                text: 'Inga planerade projekt'
-              };
-            }
-        });
-
+       week.getProjectsForUser(scope.yearweek.yearWeek, scope.user)
+          .then(function (projects) {
+             scope.userProjects = scope.setOffsetAndScale(projects);
+            scope.summary = scope.generateSummary(projects);
+          });
+       
       });
     }
   };
