@@ -1,6 +1,6 @@
 <div class="chart pie">
   <nvd3-pie-chart
-    data="data"
+    data="outerRing"
     class="bottom"
     x="get('user')"
     y="get('planned')"
@@ -13,15 +13,15 @@
   </nvd3-pie-chart>
 
   <nvd3-pie-chart
-    data="data"
+    data="innerRing"
     x="get('user')"
-    y="get('reported')"
+    y="get(['reported', 'calendar'])"
     donut="true"
     donutRatio="1"
     height="300"
     width="300"
     style="z-index:1;"
-    color="color('reported', 15)">
+    color="color(['reported', 'calendar'], 15)">
     <svg width="350" height="350"></svg>
   </nvd3-pie-chart>
 
