@@ -60,7 +60,7 @@ angular.module('iteam-dashboard').directive('donutChart', function () {
         }
         $scope.outerRing =  Object.keys(users).map(function (key, index) {
           var person = users[key];
-          var userPreview = person.reported + person.calendar;
+          var userPreview = person.reported + (person.calendar || 0);
           var user = {
             user: key,
             planned: person.planned
@@ -82,7 +82,7 @@ angular.module('iteam-dashboard').directive('donutChart', function () {
 
         $scope.innerRing =  Object.keys(users).map(function (key, index) {
           var person = users[key];
-          var userPreview = person.reported + person.calendar;
+          var userPreview = person.reported + (person.calendar || 0);
           if(!userPreview) {
             return [{
               user: key,
@@ -96,7 +96,7 @@ angular.module('iteam-dashboard').directive('donutChart', function () {
           };
           var calendar = {
             user: key,
-            calendar: person.calendar
+            calendar: (person.calendar || 0)
           };
 
           var fill = userPreview < person.planned ? {
