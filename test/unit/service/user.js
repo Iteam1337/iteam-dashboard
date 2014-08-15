@@ -72,6 +72,37 @@ describe('user', function () {
               577
             ]
           }
+        ],
+        calendar : [
+          {
+            ProjectId: 1337,
+            NumberOfHours: 1.6,
+            EmployeeShortName: 'jgn',
+            ParentProjectIds:[
+              577,
+              8,
+              1339,
+              1338
+            ]
+          },
+          {
+            ProjectId: 1338,
+            NumberOfHours: 1.3,
+            EmployeeShortName: 'jgn',
+            ParentProjectIds:[
+              577,
+              8,
+              1339,
+              1338
+            ]
+          }, {
+            ProjectId: 1339,
+            NumberOfHours: 2,
+            EmployeeShortName: 'def',
+            ParentProjectIds: [
+              577
+            ]
+          }
         ]
       };
   });

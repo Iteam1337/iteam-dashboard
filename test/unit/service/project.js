@@ -49,6 +49,30 @@ describe('project', function () {
               1338
             ]
           }
+        ],
+        calendar : [
+          {
+            ProjectId: 1337,
+            NumberOfHours: 1.6,
+            EmployeeShortName: 'JGN',
+            ParentProjectIds:[
+              577,
+              8,
+              1339,
+              1338
+            ]
+          },
+          {
+            ProjectId: 1337,
+            NumberOfHours: 0.3,
+            EmployeeShortName: 'JGN',
+            ParentProjectIds:[
+              577,
+              8,
+              1339,
+              1338
+            ]
+          }
         ]
       };
   });
@@ -58,7 +82,8 @@ describe('project', function () {
     it('should aggregate planned week', function () {
       var week = {
         planned: dummyWeek.planned,
-        reported: []
+        reported: [],
+        calendar: []
       };
       var summary = project.getProjects(week);
       expect(summary).to.have.keys('1337');
@@ -69,7 +94,8 @@ describe('project', function () {
     it('should aggregate unplanned (only reported) week', function () {
       var week = {
         planned: [],
-        reported: dummyWeek.reported
+        reported: dummyWeek.reported,
+        calendar: []
       };
       var summary = project.getProjects(week);
       expect(summary).to.have.keys('unplanned');

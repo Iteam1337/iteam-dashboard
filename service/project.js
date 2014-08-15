@@ -7,6 +7,9 @@ angular.module('iteam-dashboard').service('project', function () {
       /*
         Convert planned hours to a hashmap of projects and users
       */
+      console.log(weekHours);
+      window.calendar = weekHours.calendar;
+
       var projects = weekHours.planned.reduce(function (hashmap, alotment) {
 
         /*
@@ -28,6 +31,7 @@ angular.module('iteam-dashboard').service('project', function () {
           Object.keys(plannedUser.PlannedHoursPerRole).forEach(function (type) {
             user.planned = +parseFloat(+(user.planned || 0) + plannedUser.PlannedHoursPerRole[type]).toFixed(2);
             user.reported = +parseFloat(+(user.reported || 0) + (user.reported || 0)).toFixed(2);
+            user.calendar = +parseFloat(+(user.calendar || 0) + (user.calendar || 0)).toFixed(2);
             user.types = user.types || {};
             user.types[type] = plannedUser.PlannedHoursPerRole[type];
           });
@@ -53,7 +57,7 @@ angular.module('iteam-dashboard').service('project', function () {
                 reported: 34
           ...
          */
-
+         // console.log(hashmap);
         var projectId = hashmap[hour.ProjectId] ? hour.ProjectId: hour.ParentProjectIds.filter(function (parentId) {
           return hashmap[parentId];
         }).pop() || 'unplanned';
@@ -64,11 +68,32 @@ angular.module('iteam-dashboard').service('project', function () {
         var user = project.users[hour.EmployeeShortName.toLowerCase()] = project.users[hour.EmployeeShortName.toLowerCase()] || {};
         user.planned = (user.planned || 0);
         user.reported = +parseFloat(parseFloat(user.reported || 0) + hour.NumberOfHours).toFixed(2);
+        user.calendar = (user.calendar || 0);
         /*user.reported.details = user.reported.details || {};
         user.reported.details[hour.ProjectId] = (user.reported.details[hour.ProjectId] || 0) + hour.NumberOfHours;
         user.reported.details[hour.ProjectId].startDate = hour.StartDate;
         user.reported.details[hour.ProjectId].reported = hour.ReportedDate;*/
 
+        return hashmap;
+      }, projects);
+
+      /*
+        Convert calendar hours to a hashmap of projects and users
+       */
+      projects = weekHours.calendar.reduce(function (hashmap, hour) {
+
+        
+        var projectId = hashmap[hour.ProjectId] ? hour.ProjectId: hour.ParentProjectIds.filter(function (parentId) {
+          return hashmap[parentId];
+        }).pop() || 'unplanned';
+
+        var project = hashmap[projectId] = hashmap[projectId] || { name: 'Unplanned'};
+
+        project.users = project.users || {};
+        var user = project.users[hour.EmployeeShortName.toLowerCase()] = project.users[hour.EmployeeShortName.toLowerCase()] || {};
+        user.planned = (user.planned || 0);
+        user.reported = (user.reported || 0);
+        user.calendar = +parseFloat(parseFloat(user.calendar || 0) + hour.NumberOfHours).toFixed(2);
         return hashmap;
       }, projects);
 

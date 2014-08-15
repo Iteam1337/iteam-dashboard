@@ -14,6 +14,7 @@ angular.module('iteam-dashboard').service('user', function (project) {
 
             existing.planned = +parseFloat(+(existing.planned || 0) + (user.planned || 0)).toFixed(2);
             existing.reported = +parseFloat(+(existing.reported || 0) + (user.reported || 0)).toFixed(2);
+            existing.calendar = +parseFloat(+(existing.calendar || 0) + (user.calendar || 0)).toFixed(2);
 
           } else {
             users[userId] = user;
