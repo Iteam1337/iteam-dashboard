@@ -28,14 +28,17 @@ describe('week', function () {
     inject(function (_week_, _$httpBackend_, $templateCache) {
       week = _week_;
       $httpBackend = _$httpBackend_;
-      $templateCache.put('partial/personal/personal.html', '<html></html>');
+      $httpBackend.whenGET(/partial\/.*/).respond('<div></div>');
+      // $templateCache.put('partial/personal/personal.html', '<html></html>');
     });
+
   });
   
   afterEach(function () {
     clock.restore();
   });
   describe('week', function () {
+  
     describe('#getYearWeek', function () {
       it('returns the current year week if no parameter is passed', function () {
         var result = week.getYearWeek();
@@ -45,6 +48,7 @@ describe('week', function () {
 
     describe('#getProjects', function () {
       it('gets planned and reported hours', function () {
+
         $httpBackend.expectGET('http://api.iteam.se/week/19701/19701').respond(200);
         $httpBackend.expectGET('http://api.iteam.se/week/-1/19701/reported').respond(200); 
         $httpBackend.expectGET('http://api.iteam.se/week/-1/19701/calendar').respond(200); 
@@ -52,6 +56,7 @@ describe('week', function () {
         $httpBackend.flush();
       });
       it('caches the week', function () {
+
         $httpBackend.expectGET('http://api.iteam.se/week/19701/19701').respond(200, [{}]);
         $httpBackend.expectGET('http://api.iteam.se/week/-1/19701/reported').respond(200, [{}]); 
         $httpBackend.expectGET('http://api.iteam.se/week/-1/19701/calendar').respond(200); 

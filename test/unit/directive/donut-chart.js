@@ -6,6 +6,7 @@ describe('donutChart', function () {
   var scope;
   var element;
   var colors;
+  var $httpBackend;
 
   beforeEach(function () {
     colors = {
@@ -16,10 +17,13 @@ describe('donutChart', function () {
     module('iteam-dashboard', function ($provide) {
       $provide.value('colors', colors);
     });
-    inject(function ($rootScope, _$compile_, _$templateCache_) {
+    inject(function ($rootScope, _$compile_, _$templateCache_, _$httpBackend_) {
       outerScope = $rootScope.$new();
       $compile = _$compile_;
       $templateCache = _$templateCache_;
+      $httpBackend = _$httpBackend_;
+      $httpBackend.whenGET(/partial\/.*/).respond('<div></div>');
+
     });
 
     outerScope.users = {
