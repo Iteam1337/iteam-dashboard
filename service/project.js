@@ -7,7 +7,6 @@ angular.module('iteam-dashboard').service('project', function () {
       /*
         Convert planned hours to a hashmap of projects and users
       */
-      console.log(weekHours);
       window.calendar = weekHours.calendar;
 
       var projects = weekHours.planned.reduce(function (hashmap, alotment) {

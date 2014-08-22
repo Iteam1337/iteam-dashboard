@@ -1,7 +1,7 @@
 angular.module('iteam-dashboard').service('week', function($resource, $q, project, user) {
   'use strict';
   // http://api-dev.iteam.se/week/-1/201433/calendar
-  var api = $resource('http://api-dev.iteam.se/week/:weekVersion/:yearWeek/:type', {
+  var api = $resource('http://api.iteam.se/week/:weekVersion/:yearWeek/:type', {
     weekVersion: -1
   }, {
     planned: {
@@ -43,7 +43,7 @@ angular.module('iteam-dashboard').service('week', function($resource, $q, projec
         yearWeek: yearWeek
       })
     };
-    week.$promise = $q.all([week.planned.$promise, week.reported.$promise, week.calendar.$promise]);
+    week.$promise = $q.all([week.planned.$promise, week.reported.$promise]);
     
     weeks[yearWeek] = week;
     
@@ -57,6 +57,10 @@ angular.module('iteam-dashboard').service('week', function($resource, $q, projec
       var weekHours = getWeekHours(yearWeek);
       var projects = {};
       weekHours.$promise.then(function () {
+        angular.extend(projects, project.getProjects(weekHours));
+      });
+
+      weekHours.calendar.$promise.then(function () {
         angular.extend(projects, project.getProjects(weekHours));
       });
       return projects;
