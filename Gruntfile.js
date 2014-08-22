@@ -133,7 +133,8 @@ module.exports = function (grunt) {
     uglify: {
       main: {
         src: 'temp/app.full.js',
-        dest:'dist/app.full.min.js'
+        dest:'dist/app.full.min.js',
+        sourceMap: true
       }
     },
     htmlmin: {
