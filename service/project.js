@@ -130,7 +130,8 @@ angular.module('iteam-dashboard').service('project', function () {
             color: project.color, //project.department && ((project.department === 'Iteam' && 'red') || (project.department.indexOf('Dev') >= 0 && 'green')) || 'blue',
             department: project.department,
             planned: user.planned || 0,
-            reported: user.reported || 0
+            reported: user.reported || 0,
+            calendar: user.calendar || 0
           });
         });
         return userProjects;

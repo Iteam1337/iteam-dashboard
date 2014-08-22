@@ -13,8 +13,9 @@
             <a ng-repeat="project in activeWeek.filteredProjects | sortByDepartmentName" class="item item-icon-left item-icon-right listed" ui-sref="projectDetails({projectId: project.projectId})">
               <i class="icon ion-briefcase"></i>
               <span class="listed-name">{{project.project.toUpperCase()}}</span>
-              <span class="listed-planned">{{project.planned}}</span>
-              <span class="listed-reported">{{project.reported}}</span>
+              P: <span class="listed-planned">{{project.planned}}</span>
+              R: <span class="listed-reported">{{project.reported}}</span>
+              C: <span class="listed-reported">{{project.calendar}}</span>
               <i class="icon ion-ios7-arrow-forward"></i>
             </a>
           </ion-list>

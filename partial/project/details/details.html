@@ -14,9 +14,9 @@
             <a data-ng-repeat="(user, hours) in yearWeek.filteredUsers" class="item item-icon-left item-icon-right user-summary" data-ui-sref="personalDetails({user:user})">
               <badge user="user"></badge>
               <strong class="user">{{user.toUpperCase()}}</strong>
-              Planned: <strong>{{hours.planned}}</strong>
-              Reported: <strong>{{hours.reported}}</strong>
-              Calendar: <strong>{{hours.calendar}}</strong>
+              P: <strong>{{hours.planned}}</strong>
+              R: <strong>{{hours.reported}}</strong>
+              C: <strong>{{hours.calendar}}</strong>
             </a>
           </ion-list>
         </div>
