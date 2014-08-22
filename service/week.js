@@ -1,6 +1,5 @@
 angular.module('iteam-dashboard').service('week', function($resource, $q, project, user) {
   'use strict';
-  // http://api-dev.iteam.se/week/-1/201433/calendar
   var api = $resource('http://api.iteam.se/week/:weekVersion/:yearWeek/:type', {
     weekVersion: -1
   }, {
