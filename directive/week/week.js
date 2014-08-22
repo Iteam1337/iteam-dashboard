@@ -23,7 +23,7 @@ angular.module('iteam-dashboard').directive('week', function (project, week, use
         projects.forEach(function (hourA, i){
           // calculate heights
           hourA.y1 = $scope.height - Math.round(hourA.planned) * $scope.scale;
-          hourA.y2 = $scope.height - Math.round(hourA.reported) * $scope.scale;
+          hourA.y2 = $scope.height - Math.round(hourA.reported + hourA.calendar) * $scope.scale;
           hourA.offset = 0;
           hourA.id = i;
 
