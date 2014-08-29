@@ -1,6 +1,6 @@
 {
   "name": "iteam-dashboard",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "scripts": {
     "postinstall": "node node_modules/bower/bin/bower install"
   },
