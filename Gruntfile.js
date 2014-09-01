@@ -94,7 +94,7 @@ module.exports = function (grunt) {
       }, 
       addscript: {
         options:{
-          append:{selector:'body',html:'<script src="app.full.min.js"></script>'}
+          append:{selector:'body',html:'<script src="app.full.js"></script>'}
         },
         src:'dist/index.html'
       },       
@@ -127,12 +127,12 @@ module.exports = function (grunt) {
     ngmin: {
       main: {
         src:'temp/app.full.js',
-        dest: 'temp/app.full.js'
+        dest: 'dist/app.full.js'
       }
     },
     uglify: {
       main: {
-        src: 'temp/app.full.js',
+        src: 'dist/app.full.js',
         dest:'dist/app.full.min.js',
         sourceMap: true
       }
