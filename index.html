@@ -60,20 +60,9 @@
   <script src="partial/project/project.js"></script>
   <script src="partial/personal/details/details.js"></script>
   <script src="partial/project/details/details.js"></script>
+  <script src="partial/week/week.js"></script>
   <!-- Add New Partial JS Above -->
 
-  <ion-nav-view animation="slide-left-right">
-    <ion-tabs class="tabs-icon-top tabs-default">
-
-      <ion-tab title="Personal" icon="icon ion-person" ng-click="goTo('personal')">
-        <ion-nav-view name="personal-tab"></ion-nav-view>
-      </ion-tab>
-
-      <ion-tab title="Project" icon="icon ion-briefcase" ng-click="goTo('project')">
-        <ion-nav-view name="project-tab"></ion-nav-view>
-      </ion-tab>
-
-    </ion-tabs>
-  </ion-nav-view>
+    <ion-nav-view animation="slide-left-right"></ion-nav-view>
 </body>
 </html>

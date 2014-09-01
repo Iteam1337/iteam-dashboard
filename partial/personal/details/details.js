@@ -1,18 +1,18 @@
-angular.module('iteam-dashboard').controller('PersonalDetailsCtrl', function ($rootScope, $scope, $stateParams, week) {
+angular.module('iteam-dashboard').controller('PersonalDetailsCtrl', function ($scope, $stateParams, week) {
   'use strict';
 
   function bindProjects() {
-    week.getProjectsForUser($rootScope.activeWeek.yearWeek, $scope.user)
+    week.getProjectsForUser($scope.activeWeek.yearWeek, $scope.user)
       .then(function (filtered) {
-        $rootScope.activeWeek.filteredProjects = filtered;
-        $rootScope.$emit('shotsFired', filtered);
+        $scope.activeWeek.filteredProjects = filtered;
+        $scope.$emit('shotsFired', filtered);
       });
   }
 
-  $scope.activeSlider = $rootScope.weeks.indexOf($rootScope.activeWeek);
+  $scope.activeSlider = $scope.weeks.indexOf($scope.activeWeek);
   $scope.user = $stateParams.user;
 
-  $rootScope.$watch('activeWeek', function (activeWeek) {
+  $scope.$watch('activeWeek', function (activeWeek) {
     bindProjects();
   }, true);
 
