@@ -1,21 +1,26 @@
 <ion-nav-bar></ion-nav-bar>
-<ion-view title="V{{activeWeek.week}}">
+<ion-view class="personal" title="V{{activeWeek.week}}">
   <ion-content>
     <ion-slide-box on-slide-changed="weekSelect($index)" active-slide="activeSlider">
       <ion-slide ng-repeat="yearWeek in weeks">
         <div class="box">
           <ion-list class="card">
-            <a ng-repeat="(user, summary) in yearWeek.users" class="item item-icon-left item-icon-right listed" ui-sref="week.personalDetails({ user:user })">
-              <badge user="user"></badge>
-              <span class="listed-name">{{user.toUpperCase()}}</span>
-              <span class="listed-planned">{{summary.planned}}</span>
-              <span class="listed-reported">{{summary.reported}}</span>
-              <i class="icon ion-ios7-arrow-forward"></i>
+
+            <a ng-repeat="(user, summary) in yearWeek.users" class="item item-icon-left item-icon-right" ui-sref="week.personalDetails({ user:user })">
+              <span class="mobile-row">
+                <badge user="user"></badge>
+                <span class="name">{{user.toUpperCase()}}</span>
+              </span>
+              <span class="mobile-row align-right">
+                <strong class="ion-ios7-clock-outline"> {{summary.planned}}</strong>
+                <i class="ion-ios7-checkmark-outline"> {{summary.reported}}</i>
+                <i class="icon ion-ios7-arrow-forward"></i>
+              </span>
+
             </a>
           </ion-list>
         </div>
       </ion-slide>
     </ion-slide-box>
   </ion-content>
-  
 </ion-view>
