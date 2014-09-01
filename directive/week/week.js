@@ -1,9 +1,9 @@
 angular.module('iteam-dashboard').directive('week', function (project, week, user) {
   'use strict';
 
-  
 
-  
+
+
 
   return {
     restrict: 'E',
@@ -16,11 +16,11 @@ angular.module('iteam-dashboard').directive('week', function (project, week, use
     controller: function ($rootScope, $scope, user) {
 
       $scope.setOffsetAndScale = function (projects) {
-        $scope.scale = ($scope.height - 50) / (projects.reduce(function (max, hour){
+        $scope.scale = ($scope.height - 50) / (projects.reduce(function (max, hour) {
           return Math.max(max, hour.planned, hour.reported);
         },0) || 30);
 
-        projects.forEach(function (hourA, i){
+        projects.forEach(function (hourA, i) {
           // calculate heights
           hourA.y1 = $scope.height - Math.round(hourA.planned) * $scope.scale;
           hourA.y2 = $scope.height - Math.round(hourA.reported + hourA.calendar) * $scope.scale;
@@ -28,14 +28,21 @@ angular.module('iteam-dashboard').directive('week', function (project, week, use
           hourA.id = i;
 
           // set offsets
-          projects.forEach(function (hourB){
+          projects.forEach(function (hourB) {
             if ((hourA.y1 + hourA.offset === hourB.y1 + hourB.offset || hourA.y2 + hourA.offset === hourB.y2 + hourB.offset) && hourA.id !== hourB.id && !hourA.offset) {
               hourA.offset = -$scope.scale / 2;
               hourB.offset = $scope.scale / 2;
             }
           });
+
+          hourA.y1 += hourA.offset;
+          hourA.y2 += hourA.offset;
         });
         return projects;
+      };
+
+      $scope.show = function () {
+        return false;
       };
 
       $scope.generateSummary = function (projects) {
@@ -64,7 +71,7 @@ angular.module('iteam-dashboard').directive('week', function (project, week, use
               }, {})
             }
           };
-        } 
+        }
         return summary;
       };
 

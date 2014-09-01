@@ -1,11 +1,17 @@
 <div width="640" height="{{height + 100}}" class="list card">
-  <div class="item item-body">
-    <svg class="full-image" height="{{height + 100}}">
+  <div class="item no-line item-body">
+    <svg class="full-image" height="{{height + 100}}" >
       <line ng-repeat="up in userProjects"
-        x1="30" x2="163" y1="{{ up.y1 + up.offset }}" y2="{{ up.y2 + up.offset }}" style="stroke:{{up.color}};stroke-width:6" ng-cloak></line>
+        ng-cloak
+        ng-show="!!userProjects.length"
+        x1="30"
+        x2="163"
+        y1="{{up.y1}}"
+        y2="{{up.y2}}"
+        style="stroke:{{up.color}}; stroke-width:6;"></line>
 
-      <text ng-repeat="up in userProjects" x="30" y="{{ up.y1 + up.offset }}" text-anchor="end">{{up.planned}}h</text>
-      <text ng-repeat="up in userProjects" x="173" y="{{ up.y2 + up.offset }}"> {{up.reported + up.calendar}}h {{up.project}}</text>
+      <text ng-repeat="up in userProjects" x="30" y="{{up.y1}}" text-anchor="end">{{up.planned}}h</text>
+      <text ng-repeat="up in userProjects" x="173" y="{{up.y2}}"> {{up.reported + up.calendar}}h {{up.project}}</text>
     </svg>
 
     <p>{{summary.text}}</p>
@@ -17,7 +23,7 @@
 
   </div>
 
-  <div class="item tabs tabs-secondary tabs-icon-left">
+  <div class="item no-line tabs tabs-secondary tabs-icon-left">
     <a class="tab-item" href="#">
       {{summary.planned}}h planned
     </a>

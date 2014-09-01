@@ -1,6 +1,5 @@
 <ion-nav-bar></ion-nav-bar>
-
-<ion-view title="V{{activeWeek.week}} {{project.name}}" class="project-details">
+<ion-view class="project" title="V{{activeWeek.week}} {{project.name}}" class="project-details">
   <ion-content>
     <ion-slide-box on-slide-changed="weekSelect($index)" active-slide="activeSlider">
       <ion-slide ng-repeat="yearWeek in weeks">
@@ -12,11 +11,16 @@
         <div class="box">
           <ion-list class="card center">
             <a data-ng-repeat="(user, hours) in yearWeek.filteredUsers" class="item item-icon-left item-icon-right user-summary" data-ui-sref="personalDetails({user:user})">
-              <badge user="user"></badge>
-              <strong class="user">{{user.toUpperCase()}}</strong>
-              P: <strong>{{hours.planned}}</strong>
-              R: <strong>{{hours.reported}}</strong>
-              C: <strong>{{hours.calendar}}</strong>
+              <span class="mobile-row">
+                <badge user="user"></badge>
+                <strong class="user">{{user.toUpperCase()}}</strong>
+              </span>
+              <span class="mobile-row align-right">
+                <strong class="ion-ios7-clock-outline"> {{hours.planned}}</strong>
+                <i class="ion-ios7-checkmark-outline"> {{hours.reported}}</i>
+                <i class="ion-ios7-help-outline"> {{hours.calendar}}</i
+                <i class="icon ion-ios7-arrow-forward"></i>
+              </span>
             </a>
           </ion-list>
         </div>

@@ -1,5 +1,5 @@
 <ion-nav-bar></ion-nav-bar>
-<ion-view title="V{{activeWeek.week}} {{user.toUpperCase()}}">
+<ion-view class="personal" title="V{{activeWeek.week}} {{user.toUpperCase()}}">
   <ion-content>
     <ion-slide-box ng-show="user" on-slide-changed="weekSelect($index)" active-slide="activeSlider">
 
@@ -10,13 +10,17 @@
 
          <div class="box">
           <ion-list class="card">
-            <a ng-repeat="project in activeWeek.filteredProjects | sortByDepartmentName" class="item item-icon-left item-icon-right listed" ui-sref="projectDetails({projectId: project.projectId})">
-              <i class="icon ion-briefcase"></i>
-              <span class="listed-name">{{project.project.toUpperCase()}}</span>
-              P: <span class="listed-planned">{{project.planned}}</span>
-              R: <span class="listed-reported">{{project.reported}}</span>
-              C: <span class="listed-reported">{{project.calendar}}</span>
-              <i class="icon ion-ios7-arrow-forward"></i>
+            <a ng-repeat="project in activeWeek.filteredProjects | sortByDepartmentName" class="item item-icon-left item-icon-right" ui-sref="projectDetails({projectId: project.projectId})">
+              <span class="mobile-row">
+                <i class="icon ion-briefcase"></i>
+                <span class="name">{{project.project.toUpperCase()}}</span>
+              </span>
+              <span class="mobile-row align-right">
+                <strong class="ion-ios7-clock-outline"> {{project.planned}}</strong>
+                <i class="ion-ios7-checkmark-outline"> {{project.reported}}</i>
+                <i class="ion-ios7-help-outline"> {{project.calendar}}</i>
+                <i class="icon ion-ios7-arrow-forward"></i>
+              </span>
             </a>
           </ion-list>
         </div>

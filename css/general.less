@@ -1,10 +1,38 @@
+@background-color: #FAFAFB;
+@background-color-dark: #323542;
+@personal-color: #DD6161;
+@project-color: #63A9DD;
+@tab-width: 3px;
+
 body {
   color: #25263B;
+  background: @background-color;
 }
 
 .item,
 ion-content {
-  background: #F7F7F7;
+  background: @background-color;
+}
+
+.tabs-striped .tabs,
+.bar-header {
+  background: @background-color;
+  color: #25263B;
+  h1 {
+    color: #5B5B59;
+  }
+}
+
+
+ion-nav-bar .title {
+  margin: -@tab-width 10px 0;
+}
+
+[name="personal-tab"] ion-nav-bar {
+  border-top: @tab-width solid @personal-color;
+}
+[name="project-tab"] ion-nav-bar {
+  border-top: @tab-width solid @project-color;
 }
 
 ion-content {
@@ -26,7 +54,7 @@ ion-content {
   border-color: transparent;
   padding-top: 20px;
   padding-bottom: 20px;
-  &:before {
+  &:not(.no-line):before {
     width: ~'calc(100% - 50px)';
     height: 1px;
     background: #DDD;
@@ -64,4 +92,57 @@ ion-content {
 
 }
 
+.card .item {
+  &, &.listed {
+    .align-right {
+      align-self: flex-end;
+      position: absolute;
+      right: 20px;
+      padding-right: 50px;
+    }
+  }
+}
 
+@media @mobile {
+  .card .item {
+    &, &.listed {
+      .mobile-row {
+        align-self: auto;
+        position: static;
+        right: inherit;
+        padding-right: 0;
+        padding: 0;
+        margin: 0;
+        display: block;
+        width: 100%;
+        vertical-align: top;
+        word-break: normal;
+        white-space: nowrap;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+.tab-item {
+  margin-top: -2px;
+  border-width: @tab-width 0 0;
+  border-style: solid;
+  border-color: #EF4E3A;
+  -moz-border-top-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  border-image: none;
+  opacity: 0.4;
+  &.project-tab {
+    border-color: @project-color;
+    color: @project-color;
+  }
+  &.personal-tab {
+    border-color: @personal-color;
+    color: @personal-color;
+  }
+}

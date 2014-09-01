@@ -18,7 +18,7 @@
   <script src="http://localhost:35729/livereload.js" data-build="exclude"></script>
 
   <!-- JS from Bower components -->
-  <script src="bower_components/less/dist/less-1.5.1.js" data-build="exclude"></script>
+  <script src="bower_components/less/dist/less-1.7.4.js" data-build="exclude"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
   <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
@@ -63,13 +63,13 @@
   <!-- Add New Partial JS Above -->
 
   <ion-nav-view animation="slide-left-right">
-    <ion-tabs class="tabs-icon-top tabs-default">
+    <ion-tabs class="tabs-striped">
 
-      <ion-tab title="Personal" icon="icon ion-person" ng-click="goTo('personal')">
+      <ion-tab class="personal-tab bottom-tabs" title="Personal" icon="icon ion-person" ng-click="goTo('personal')">
         <ion-nav-view name="personal-tab"></ion-nav-view>
       </ion-tab>
 
-      <ion-tab title="Project" icon="icon ion-briefcase" ng-click="goTo('project')">
+      <ion-tab class="project-tab bottom-tabs" title="Project" icon="icon ion-briefcase" ng-click="goTo('project')">
         <ion-nav-view name="project-tab"></ion-nav-view>
       </ion-tab>
 
