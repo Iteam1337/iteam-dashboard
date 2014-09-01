@@ -6,8 +6,14 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
   $stateProvider.state('week', {
     url: '',
     abstract: true,
-    templateUrl: 'partial/week/week.html',
-    controller: 'WeekCtrl'
+    views: {
+      'main-view': {
+        templateUrl: 'partial/week/week.html'
+      },
+      'menu': {
+        templateUrl: 'partial/menu/menu.html'
+      }     
+    }
   });
 
 
