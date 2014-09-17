@@ -1,4 +1,4 @@
-angular.module('iteam-dashboard').service('week', function($resource, $q, project, user) {
+angular.module('iteam-dashboard').service('week', function($resource, $q, $rootScope, project, user) {
   'use strict';
   var api = $resource('http://api.iteam.se/week/:weekVersion/:yearWeek/:type', {
     weekVersion: -1
@@ -30,9 +30,14 @@ angular.module('iteam-dashboard').service('week', function($resource, $q, projec
       return weeks[yearWeek];
     }
 
+    var weekVersion = angular.copy(yearWeek);
+    if (yearWeek > $rootScope.weeks[5].yearWeek) {
+      weekVersion = angular.copy($rootScope.weeks[5].yearWeek);
+    }
+
     var week = {
       planned: api.planned({
-        weekVersion: yearWeek,
+        weekVersion: weekVersion,
         yearWeek: yearWeek
       }),
       reported: api.reported({
