@@ -1,6 +1,4 @@
 image: node0.10
-cache: 
-  - .npm
 
 script:
   - npm -s install -g grunt-cli bower
