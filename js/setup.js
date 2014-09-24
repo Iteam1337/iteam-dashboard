@@ -1,10 +1,11 @@
 angular.module('iteam-dashboard', ['ngResource', 'ionic', 'nvd3ChartDirectives']);
 
 // global script. TODO: move to directive
-addToHomescreen();
 
-angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterProvider) {
+angular.module('iteam-dashboard').config(function ($window, $stateProvider, $urlRouterProvider) {
   'use strict';
+
+  if ($window.addToHomescreen) { $window.addToHomescreen(); }
 
   $stateProvider.state('personal', {
     url: '/personal',
