@@ -62,9 +62,11 @@
   <script src="partial/project/project.js"></script>
   <script src="partial/personal/details/details.js"></script>
   <script src="partial/project/details/details.js"></script>
+  <script src="partial/menu/menu.js"></script>
+  <script src="partial/week/week.js"></script>
   <!-- Add New Partial JS Above -->
 
-  <ion-nav-view animation="slide-left-right">
+<!--   <ion-nav-view animation="slide-left-right">
     <ion-tabs class="tabs-striped">
 
       <ion-tab class="personal-tab bottom-tabs" title="Personal" icon="icon ion-person" ng-click="goTo('personal')">
@@ -76,6 +78,30 @@
       </ion-tab>
 
     </ion-tabs>
-  </ion-nav-view>
+  </ion-nav-view> -->
+
+  <ion-side-menus ng-controller="WeekCtrl">
+    <!-- Left menu -->
+    <ion-side-menu side="left" class="menu-left">
+      <ion-nav-view name="menu"></ion-nav-view>
+    </ion-side-menu>
+
+    <!-- Center content -->
+    <ion-side-menu-content>
+      <ion-nav-view animation="slide-left-right">
+        <ion-tabs class="tabs-striped">
+
+          <ion-tab class="personal-tab bottom-tabs" title="Personal" icon="icon ion-person" ng-click="goTo('personal')">
+            <ion-nav-view name="personal-tab"></ion-nav-view>
+          </ion-tab>
+
+          <ion-tab class="project-tab bottom-tabs" title="Project" icon="icon ion-briefcase" ng-click="goTo('project')">
+            <ion-nav-view name="project-tab"></ion-nav-view>
+          </ion-tab>
+
+        </ion-tabs>
+      </ion-nav-view> 
+    </ion-side-menu-content>
+  </ion-side-menus>
 </body>
 </html>

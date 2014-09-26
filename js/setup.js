@@ -5,7 +5,17 @@ angular.module('iteam-dashboard', ['ngResource', 'ionic', 'nvd3ChartDirectives']
 angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterProvider) {
   'use strict';
 
-  $stateProvider.state('personal', {
+  $stateProvider.state('week', {
+    url: '',
+    abstract: true,
+    views: {
+      'menu': {
+        templateUrl: 'partial/menu/menu.html'
+      }
+    }
+  });
+
+  $stateProvider.state('week.personal', {
     url: '/personal',
     views: {
       'personal-tab': {
@@ -15,7 +25,7 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
     }
   });
 
-  $stateProvider.state('personalDetails', {
+  $stateProvider.state('week.personalDetails', {
     url: '/personal/:user',
     views: {
       'personal-tab': {
@@ -27,7 +37,7 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
 
 // TODO:
 // optional week for detail route
-  $stateProvider.state('project', {
+  $stateProvider.state('week.project', {
     url: '/project',
     views: {
       'project-tab': {
@@ -37,7 +47,7 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
     }
   });
 
-  $stateProvider.state('projectDetails', {
+  $stateProvider.state('week.projectDetails', {
     url: '/project/:projectId',
     views: {
       'project-tab': {
