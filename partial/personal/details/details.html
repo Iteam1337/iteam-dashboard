@@ -10,7 +10,7 @@
 
          <div class="box">
           <ion-list class="card">
-            <a ng-repeat="project in activeWeek.filteredProjects | sortByDepartmentName" class="item item-icon-left item-icon-right" ui-sref="projectDetails({projectId: project.projectId})">
+            <a ng-repeat="project in activeWeek.filteredProjects | sortByDepartmentName" class="item item-icon-left item-icon-right" ui-sref="week.projectDetails({projectId: project.projectId})">
               <span class="mobile-row">
                 <i class="icon ion-briefcase"></i>
                 <span class="name">{{project.project.toUpperCase()}}</span>
