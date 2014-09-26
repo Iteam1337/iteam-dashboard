@@ -5,7 +5,7 @@ angular.module('iteam-dashboard').controller('PersonalDetailsCtrl', function ($r
     week.getProjectsForUser($rootScope.activeWeek.yearWeek, $scope.user)
       .then(function (filtered) {
         $rootScope.activeWeek.filteredProjects = filtered;
-        $rootScope.$emit('shotsFired', filtered);
+        $rootScope.$emit('filteredProjectsChanged', filtered);
       });
   }
 
