@@ -75,8 +75,8 @@ angular.module('iteam-dashboard').directive('week', function (project, week, use
         return summary;
       };
 
-      $rootScope.$on('shotsFired', function (evenet, projects) {
-        if(!projects) {
+      $rootScope.$on('filteredProjectsChanged', function (event, projects) {
+        if (!projects) {
           return;
         }
         $scope.userProjects = $scope.setOffsetAndScale(projects);
