@@ -199,7 +199,7 @@ module.exports = function (grunt) {
       },
       test: {
         options: {
-          bucket: 'master-dashboard.iteam.se'
+          bucket: 'test-dashboard.iteam.se'
         }
       },
     },
