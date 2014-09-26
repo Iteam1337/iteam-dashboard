@@ -5,7 +5,7 @@
       <ion-slide ng-repeat="yearWeek in weeks">
         <div class="box">
           <ion-list class="card">
-            <a ng-repeat="(user, summary) in yearWeek.users" class="item item-icon-left item-icon-right" ui-sref="personalDetails({ user:user })">
+            <a ng-repeat="(user, summary) in yearWeek.users" class="item item-icon-left item-icon-right" ui-sref="week.personalDetails({ user:user })">
               <span class="mobile-row">
                 <badge user="user"></badge>
                 <span class="name">{{user.toUpperCase()}}</span>

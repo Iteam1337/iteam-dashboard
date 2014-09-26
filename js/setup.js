@@ -11,6 +11,9 @@ angular.module('iteam-dashboard').config(function ($stateProvider, $urlRouterPro
     views: {
       'menu': {
         templateUrl: 'partial/menu/menu.html'
+      },
+      'main': {
+        templateUrl: 'partial/week/week.html'
       }
     }
   });
