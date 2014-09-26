@@ -26,7 +26,7 @@ angular.module('iteam-dashboard').service('week', function($resource, $q, $rootS
   var weeks = {};
 
   function getWeekHours(yearWeek) {
-    if(weeks[yearWeek]) {
+    if (weeks[yearWeek]) {
       return weeks[yearWeek];
     }
 
