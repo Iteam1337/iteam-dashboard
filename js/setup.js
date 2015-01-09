@@ -75,8 +75,13 @@ angular.module('iteam-dashboard').run(function ($rootScope, week, $state) {
 
   $rootScope.weeks = [-5, -4, -3, -2, -1, 0, 1].map(function(delta){
     var date = moment().add('days', 7 * delta);
+    var weekNum = date.isoWeek();
+    var pad = '';
+    if (weekNum < 10){
+      pad = '0';
+    }
     var week = {
-      yearWeek: date.year() + '' + date.isoWeek(),
+      yearWeek: date.year() + pad + weekNum, 
       year: date.year(),
       week: date.isoWeek(),
       delta : delta,

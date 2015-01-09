@@ -42,31 +42,31 @@ describe('week', function () {
     describe('#getYearWeek', function () {
       it('returns the current year week if no parameter is passed', function () {
         var result = week.getYearWeek();
-        expect(result).to.equal('19701');
+        expect(result).to.equal('197001');
       });
     });
 
     describe('#getProjects', function () {
       it('gets planned and reported hours', function () {
 
-        $httpBackend.expectGET('http://api.iteam.se/week/19701/19701').respond(200);
-        $httpBackend.expectGET('http://api.iteam.se/week/-1/19701/reported').respond(200); 
-        $httpBackend.expectGET('http://api.iteam.se/week/-1/19701/calendar').respond(200); 
-        week.getProjects('19701');
+        $httpBackend.expectGET('http://api.iteam.se/week/197001/197001').respond(200);
+        $httpBackend.expectGET('http://api.iteam.se/week/-1/197001/reported').respond(200); 
+        $httpBackend.expectGET('http://api.iteam.se/week/-1/197001/calendar').respond(200); 
+        week.getProjects('197001');
         $httpBackend.flush();
       });
       it('caches the week', function () {
 
-        $httpBackend.expectGET('http://api.iteam.se/week/19701/19701').respond(200, [{}]);
-        $httpBackend.expectGET('http://api.iteam.se/week/-1/19701/reported').respond(200, [{}]); 
-        $httpBackend.expectGET('http://api.iteam.se/week/-1/19701/calendar').respond(200); 
-        week.getProjects('19701');
-        week.getProjects('19701');
+        $httpBackend.expectGET('http://api.iteam.se/week/197001/197001').respond(200, [{}]);
+        $httpBackend.expectGET('http://api.iteam.se/week/-1/197001/reported').respond(200, [{}]); 
+        $httpBackend.expectGET('http://api.iteam.se/week/-1/197001/calendar').respond(200); 
+        week.getProjects('197001');
+        week.getProjects('197001');
         $httpBackend.flush();
         $httpBackend.verifyNoOutstandingRequest();
       });
       it('returns the projects in a week', function () {
-        var result = week.getProjects('19701');
+        var result = week.getProjects('197001');
         expect(result).to.be.an('object');
       });
     }); 

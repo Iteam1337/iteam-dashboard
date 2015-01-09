@@ -55,7 +55,14 @@ angular.module('iteam-dashboard').service('week', function($resource, $q, $rootS
   }
 
   var week = {
-    getYearWeek: function(now){ return moment(now).year() + '' + moment().isoWeek(); },
+    getYearWeek: function(now) {
+      var weekNum = moment().isoWeek();
+      var pad = '';
+      if (weekNum < 10) {
+        pad = '0';
+      }
+      return moment(now).year() + pad + weekNum;
+    },
     
     getProjects: function (yearWeek) {
       var weekHours = getWeekHours(yearWeek);
