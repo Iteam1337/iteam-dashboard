@@ -197,9 +197,9 @@ module.exports = function (grunt) {
           bucket: 'stage-dashboard.iteam.se'
         }
       },
-      master: {
+      test: {
         options: {
-          bucket: 'master-dashboard.iteam.se'
+          bucket: 'test-dashboard.iteam.se'
         }
       },
     },
@@ -227,22 +227,22 @@ module.exports = function (grunt) {
   grunt.registerTask('server', ['connect']);
   grunt.registerTask('default', ['test', 'server', 'watch']);
 
-  grunt.registerTask('deploy:production', [
+  grunt.registerTask('deploy:master', [
     'build',
     'test',
     's3:production'
   ]);
 
-  grunt.registerTask('deploy:stage', [
+  grunt.registerTask('deploy:release', [
     'build',
     'test',
     's3:stage'
   ]);
 
-  grunt.registerTask('deploy:master', [
+  grunt.registerTask('deploy:develop', [
     'build',
     'test',
-    's3:master'
+    's3:test'
   ]);
 
 };
