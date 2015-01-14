@@ -227,13 +227,7 @@ module.exports = function (grunt) {
   grunt.registerTask('server', ['connect']);
   grunt.registerTask('default', ['test', 'server', 'watch']);
 
-  grunt.registerTask('deploy:production', [
-    'build',
-    'test',
-    's3:production'
-  ]);
-
-  grunt.registerTask('deploy:stage', [
+  grunt.registerTask('deploy:develop', [
     'build',
     'test',
     's3:stage'
@@ -242,7 +236,7 @@ module.exports = function (grunt) {
   grunt.registerTask('deploy:master', [
     'build',
     'test',
-    's3:master'
+    's3:production'
   ]);
 
 };
