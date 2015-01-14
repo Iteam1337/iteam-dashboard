@@ -1,6 +1,7 @@
 image: node0.10
 
 script:
+  - npm config set registry http://npm.iteam.se:4873/
   - npm -s install -g grunt-cli bower
   - npm -s install
   - bower install
