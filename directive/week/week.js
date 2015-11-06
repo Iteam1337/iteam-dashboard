@@ -11,7 +11,7 @@ angular.module('iteam-dashboard').directive('week', function (project, week, use
     templateUrl: 'directive/week/week.html',
     controller: function ($rootScope, $scope, user) {
       $scope.setOffsetAndScale = function (projects) {
-        let max = projects.reduce(function (max, hour) {
+        var max = projects.reduce(function (max, hour) {
           return Math.max(max, hour.planned, hour.reported)
         }, 0)
 

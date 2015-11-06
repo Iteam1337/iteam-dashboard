@@ -1,7 +1,7 @@
 angular.module('iteam-dashboard').service('colors', function () {
   'use strict'
   function hue (string) {
-    let total = string.split('').reduce(function (numb, character, index) {
+    var total = string.split('').reduce(function (numb, character, index) {
       numb = (numb * character.charCodeAt(0) * (index + 0.7))
       return numb
     }, 1)
