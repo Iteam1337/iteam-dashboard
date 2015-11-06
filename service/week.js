@@ -1,6 +1,6 @@
-angular.module('iteam-dashboard').service('week', function($resource, $q, $rootScope, project, user) {
-  'use strict';
-  var api = $resource('http://api.iteam.se/week/:weekVersion/:yearWeek/:type', {
+angular.module('iteam-dashboard').service('week', function ($resource, $q, $rootScope, project, user) {
+  'use strict'
+  var api = $resource('http://api-secure.iteam.se/week/:weekVersion/:yearWeek/:type', {
     weekVersion: -1
   }, {
     planned: {
@@ -21,18 +21,18 @@ angular.module('iteam-dashboard').service('week', function($resource, $q, $rootS
       },
       isArray: true
     }
-  });
+  })
 
-  var weeks = {};
+  var weeks = {}
 
-  function getWeekHours(yearWeek) {
+  function getWeekHours (yearWeek) {
     if (weeks[yearWeek]) {
-      return weeks[yearWeek];
+      return weeks[yearWeek]
     }
 
-    var weekVersion = angular.copy(yearWeek);
+    var weekVersion = angular.copy(yearWeek)
     if (yearWeek > $rootScope.weeks[5].yearWeek) {
-      weekVersion = angular.copy($rootScope.weeks[5].yearWeek);
+      weekVersion = angular.copy($rootScope.weeks[5].yearWeek)
     }
 
     var week = {
@@ -46,70 +46,70 @@ angular.module('iteam-dashboard').service('week', function($resource, $q, $rootS
       calendar: api.calendar({
         yearWeek: yearWeek
       })
-    };
-    week.$promise = $q.all([week.planned.$promise, week.reported.$promise]);
-    
-    weeks[yearWeek] = week;
-    
-    return week;
+    }
+    week.$promise = $q.all([week.planned.$promise, week.reported.$promise])
+
+    weeks[yearWeek] = week
+
+    return week
   }
 
   var week = {
-    getYearWeek: function(now) {
-      var weekNum = moment().isoWeek();
-      var pad = '';
+    getYearWeek: function (now) {
+      var weekNum = moment().isoWeek()
+      var pad = ''
       if (weekNum < 10) {
-        pad = '0';
+        pad = '0'
       }
-      return moment(now).year() + pad + weekNum;
+      return moment(now).year() + pad + weekNum
     },
-    
+
     getProjects: function (yearWeek) {
-      var weekHours = getWeekHours(yearWeek);
-      var projects = {};
+      var weekHours = getWeekHours(yearWeek)
+      var projects = {}
       weekHours.$promise.then(function () {
-        angular.extend(projects, project.getProjects(weekHours));
-      });
+        angular.extend(projects, project.getProjects(weekHours))
+      })
 
       weekHours.calendar.$promise.then(function () {
-        angular.extend(projects, project.getProjects(weekHours));
-      });
-      return projects;
+        angular.extend(projects, project.getProjects(weekHours))
+      })
+      return projects
     },
 
     getUsers: function (yearWeek) {
-      var weekHours = getWeekHours(yearWeek);
-      var users = {};
+      var weekHours = getWeekHours(yearWeek)
+      var users = {}
       weekHours.$promise.then(function () {
-        angular.extend(users, user.getUsers(weekHours));
-      });
-      return users;
+        angular.extend(users, user.getUsers(weekHours))
+      })
+      return users
     },
 
     getProjectsForUser: function (yearWeek, user) {
-      var deferred = $q.defer();
-      var weekHours = getWeekHours(yearWeek);
+      var deferred = $q.defer()
+      var weekHours = getWeekHours(yearWeek)
       weekHours.$promise.then(function () {
         var filtered = project.getWeekHoursSummary(weekHours).filter(function (hour) {
-          return hour.user === user;
+          return hour.user === user
         }).sort(function (a, b) {
-          return a.planned - b.planned;
-        });
-        deferred.resolve(filtered);
-      });
-      return deferred.promise;
+          return a.planned - b.planned
+        })
+        deferred.resolve(filtered)
+      })
+      return deferred.promise
     },
 
     getUsersForProject: function (yearWeek, projectId) {
-      var deferred = $q.defer();
-      var weekHours = getWeekHours(yearWeek);
+      var deferred = $q.defer()
+      var weekHours = getWeekHours(yearWeek)
       weekHours.$promise.then(function () {
-        var projects = project.getProjects(weekHours);
-        deferred.resolve(projects[projectId] && projects[projectId].users || []);
-      });
-      return deferred.promise;
+        var projects = project.getProjects(weekHours)
+        deferred.resolve(projects[projectId] && projects[projectId].users || [])
+      })
+      return deferred.promise
     }
-  };
+  }
 
-  return week;
-});
+  return week
+})
