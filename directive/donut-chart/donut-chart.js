@@ -1,8 +1,8 @@
 angular.module('iteam-dashboard').directive('donutChart', function () {
-  'use strict';
+  'use strict'
 
-  function flattenArray(array, element) {
-    return array.concat(element);
+  function flattenArray (array, element) {
+    return array.concat(element)
   }
 
   return {
@@ -16,102 +16,100 @@ angular.module('iteam-dashboard').directive('donutChart', function () {
     controller: function ($scope, colors) {
       $scope.color = function (key, dodge) {
         return function (d) {
-          var fill = d.data.fill !== undefined;
+          var fill = d.data.fill !== undefined
           if (fill) {
-            return 'transparent';
+            return 'transparent'
           }
-          var user = d.data.user || '';
-          var color = colors.getColor(user);
+          var user = d.data.user || ''
+          var color = colors.getColor(user)
 
           if (Array.isArray(key)) {
             var step = key.reduce(function (number, _key, index) {
               if (d.data[_key]) {
-                number = index + 1;
+                number = index + 1
               }
-              return number;
-            }, 1);
-            return colors.shade(color, (dodge || 5) * step);
+              return number
+            }, 1)
+            return colors.shade(color, (dodge || 5) * step)
           }
-          return dodge ? colors.shade(color, dodge) : color;
-        };
-      };
+          return dodge ? colors.shade(color, dodge) : color
+        }
+      }
 
       $scope.get = function (key) {
-
         return function (d) {
           if (d.fill) {
-            return d.fill;
+            return d.fill
           }
           if (Array.isArray(key)) {
             return key.reduce(function (value, _key) {
-              return d[_key] || value; 
-            }, 0);
+              return d[_key] || value
+            }, 0)
           }
-          return d[key] || 0;
-        };
-      };
+          return d[key] || 0
+        }
+      }
 
-      $scope.outerRing = [];
-      $scope.innerRing = [];
+      $scope.outerRing = []
+      $scope.innerRing = []
 
       $scope.$watch('users', function (users) {
         if (!users) {
-          return;
+          return
         }
-        $scope.outerRing =  Object.keys(users).map(function (key, index) {
-          var person = users[key];
-          var userPreview = person.reported + (person.calendar || 0);
+        $scope.outerRing = Object.keys(users).map(function (key, index) {
+          var person = users[key]
+          var userPreview = person.reported + (person.calendar || 0)
           var user = {
             user: key,
             planned: person.planned
-          };
+          }
 
           var fill = userPreview > person.planned ? {
             user: key,
             fill: userPreview - person.planned
-          } : false;
+          } : false
 
           if (!fill) {
-            return [user];
+            return [user]
           }
 
           // we add a fill if userPreview is greater than planned hours
-          return [user, fill];
-        }).reduce(flattenArray, []);
+          return [user, fill]
+        }).reduce(flattenArray, [])
 
-
-        $scope.innerRing =  Object.keys(users).map(function (key, index) {
-          var person = users[key];
-          var userPreview = person.reported + (person.calendar || 0);
-          if(!userPreview) {
+        $scope.innerRing = Object.keys(users).map(function (key, index) {
+          var person = users[key]
+          var userPreview = person.reported + (person.calendar || 0)
+          if (!userPreview) {
             return [{
               user: key,
               fill: person.planned
-            }];
+            }]
           }
 
           var reported = {
             user: key,
             reported: person.reported
-          };
+          }
           var calendar = {
             user: key,
             calendar: (person.calendar || 0)
-          };
+          }
 
           var fill = userPreview < person.planned ? {
             user: key,
-            fill: person.planned - userPreview 
-          } : false;
+            fill: person.planned - userPreview
+          } : false
 
           if (!fill) {
-            return [reported, calendar];
+            return [reported, calendar]
           }
 
           // we add a fill if userPreview is greater than planned hours
-          return [reported, calendar, fill];
-        }).reduce(flattenArray, []);
-      });
+          return [reported, calendar, fill]
+        }).reduce(flattenArray, [])
+      })
     }
-  };
-});
+  }
+})

@@ -1,17 +1,14 @@
 describe('PersonalCtrl', function () {
-
-  var scope, ctrl;
+  var scope, ctrl
 
   beforeEach(function () {
-    module('iteam-dashboard');
+    module('iteam-dashboard')
     inject(function ($rootScope, $controller) {
-      scope = $rootScope.$new();
-      ctrl = $controller('PersonalCtrl', {$scope: scope});
-    });
-  });
+      scope = $rootScope.$new()
+      ctrl = $controller('PersonalCtrl', {$scope: scope})
+    })
+  })
 
-  xit('should have tests', function () {
-    
-  });
+  xit('should have tests', function () {})
 
-});
+})

@@ -1,5 +1,5 @@
 angular.module('iteam-dashboard').directive('badge', function () {
-  'use strict';
+  'use strict'
 
   return {
     restrict: 'E',
@@ -11,11 +11,11 @@ angular.module('iteam-dashboard').directive('badge', function () {
     controller: function ($scope, colors) {
       $scope.userColor = function () {
         if (!$scope.user) {
-          return;
+          return
         }
-        var color = colors.getColor($scope.user);
-        return 'background-color:' + color;
-      };
+        var color = colors.getColor($scope.user)
+        return 'background-color:' + color
+      }
     }
-  };
-});
+  }
+})

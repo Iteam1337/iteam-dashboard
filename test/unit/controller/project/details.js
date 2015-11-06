@@ -1,17 +1,14 @@
 describe('ProjectDetailsCtrl', function () {
-
-  var scope, ctrl;
+  var scope, ctrl
 
   beforeEach(function () {
-    module('iteam-dashboard');
+    module('iteam-dashboard')
     inject(function ($rootScope, $controller) {
-      scope = $rootScope.$new();
-      ctrl = $controller('ProjectDetailsCtrl', {$scope: scope});
-    });
-  });
+      scope = $rootScope.$new()
+      ctrl = $controller('ProjectDetailsCtrl', {$scope: scope})
+    })
+  })
 
-  xit('should have tests', function () {
-    
-  });
+  xit('should have tests', function () {})
 
-});
+})
