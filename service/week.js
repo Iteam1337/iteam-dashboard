@@ -1,6 +1,6 @@
 angular.module('iteam-dashboard').service('week', function ($resource, $q, $rootScope, project, user) {
   'use strict'
-  var api = $resource('http://api-secure.iteam.se/week/:weekVersion/:yearWeek/:type', {
+  var api = $resource('https://api-secure.iteam.se/week/:weekVersion/:yearWeek/:type', {
     weekVersion: -1
   }, {
     planned: {
